@@ -14,10 +14,11 @@ namespace BoVoyageProjetFinal.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
+
         protected override void Seed(BoVoyageDbContext context)
         {
             /*
-              context.Civilities.AddOrUpdate(
+            context.Civilities.AddOrUpdate(
                 new Models.Civility { Label = "Monsieur" },
                 new Models.Civility { Label = "Madame" },
                 new Models.Civility { Label = "Mademoiselle" });

@@ -36,7 +36,7 @@ namespace BoVoyageProjetFinal.Models
         [Display(Name = "Agence de voyage")]
         public int TravelAgencyID { get; set; }
 
-        [ForeignKey("TravelAgencyId")]
+        [ForeignKey("TravelAgencyID")]
         public TravelAgency TravelAgency { get; set; }
 
 
@@ -44,7 +44,7 @@ namespace BoVoyageProjetFinal.Models
         [Display(Name = "Destination")]
         public int DestinationID { get; set; }
 
-        [ForeignKey("DestinationId")]
+        [ForeignKey("DestinationID")]
         public Destination Destination { get; set; }
     }
 }
