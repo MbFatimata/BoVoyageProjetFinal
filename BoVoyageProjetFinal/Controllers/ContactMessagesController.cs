@@ -32,7 +32,7 @@ namespace BoVoyageProjetFinal.Controllers
             {
                 db.ContactMessages.Add(contactMessage);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(contactMessage);
