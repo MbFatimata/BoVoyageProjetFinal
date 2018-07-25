@@ -108,6 +108,10 @@
     <Compile Include="Migrations\201807251353362_Init.Designer.cs">
       <DependentUpon>201807251353362_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807251416271_AjoutAttributsModel.cs" />
+    <Compile Include="Migrations\201807251416271_AjoutAttributsModel.Designer.cs">
+      <DependentUpon>201807251416271_AjoutAttributsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Civility.cs" />
     <Compile Include="Models\ContactMessage.cs" />
@@ -124,6 +128,7 @@
     <Compile Include="Models\TravelAgency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Validator\ExistingMailUser.cs" />
+    <Compile Include="Utils\Validator\Major.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -142,6 +147,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807251353362_Init.resx">
       <DependentUpon>201807251353362_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807251416271_AjoutAttributsModel.resx">
+      <DependentUpon>201807251416271_AjoutAttributsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

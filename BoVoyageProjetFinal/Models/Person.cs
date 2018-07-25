@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoVoyageProjetFinal.Utils.Validator;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,6 +32,7 @@ namespace BoVoyageProjetFinal.Models
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Date de naissance")]
         [DataType(DataType.Date)]
+        [Major(18, ErrorMessage = "Attention, vous devez être majeur!")]
         public DateTime Birthdate { get; set; }
 
         [NotMapped]
