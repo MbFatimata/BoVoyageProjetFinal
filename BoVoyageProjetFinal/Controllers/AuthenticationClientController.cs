@@ -12,7 +12,7 @@ namespace BoVoyageProjetFinal.Controllers
     public class AuthenticationClientController : Controller
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
-        // GET: BackOffice/Authentication/Login
+        // GET: /AuthenticationClient/Login
         public ActionResult Login()
         {
             return View();
@@ -37,13 +37,20 @@ namespace BoVoyageProjetFinal.Controllers
                 else
                 {
                     Session.Add("CLIENT_BO", client);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");// a modifier pour rediriger ver la site Web Client
                 }
             }
             return View(model);
 
         }
 
+        [AuthenticationFilter]
+        // Gey: AuthenticationClient/Logout
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
 
         protected override void Dispose(bool disposing) //pour liberer connexion à la base de donnees lorque controleur a fini de l'utiliser
         {

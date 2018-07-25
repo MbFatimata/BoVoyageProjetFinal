@@ -118,6 +118,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationClientController.cs" />
+    <Compile Include="Controllers\AuthenticationFilterAttribute.cs" />
     <Compile Include="Controllers\ContactMessagesController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
