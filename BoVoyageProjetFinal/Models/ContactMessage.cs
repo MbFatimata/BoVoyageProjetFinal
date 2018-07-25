@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace BoVoyageProjetFinal.Models
 {
-    public class MessageContact
+    [Table(name: "ContactMessages")]
+    public class ContactMessage
     {
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Nom")]
@@ -17,7 +19,7 @@ namespace BoVoyageProjetFinal.Models
 
         [Required(ErrorMessage = "Le champ {0} obligatoire")]
         [Display(Name = "Prénom")]
-        [StringLength(15, ErrorMessage = "Trop long")]
+        [StringLength(15, ErrorMessage = "Le champ est trop long")]
         public string Firstname { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]

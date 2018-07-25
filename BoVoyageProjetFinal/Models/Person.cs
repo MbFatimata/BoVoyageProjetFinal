@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace BoVoyageProjetFinal.Models
 {
-    public class Person : BaseModel
+    public abstract class Person : BaseModel
     {
-        public abstract class Personne : BaseModel
-        {
             [Required(ErrorMessage = "Le champ {0} est obligatoire")]
             [Display(Name = "Nom")]
             [StringLength(50, MinimumLength = 2,
@@ -22,7 +22,7 @@ namespace BoVoyageProjetFinal.Models
             [Display(Name = "Adresse")]
             [StringLength(100, MinimumLength = 2,
                 ErrorMessage = "Le champ {0} doit contenir entre {2} et {1} caractères")]
-            public string Addresse { get; set; }
+            public string Address { get; set; }
 
             [Required(ErrorMessage = "Le champ {0} est obligatoire")]
             [Display(Name = "Numéro de téléphone")]
@@ -34,7 +34,7 @@ namespace BoVoyageProjetFinal.Models
             public DateTime Birthdate { get; set; }
 
             [NotMapped]
-            public int Age { get { return DateTime.Today.Year - DateNaissance.Year; } }
+            public int Age { get { return DateTime.Today.Year - Birthdate.Year; } }
 
             [Required(ErrorMessage = "Le champ {0} est obligatoire")]
             [Display(Name = "Civilité")]
@@ -42,6 +42,6 @@ namespace BoVoyageProjetFinal.Models
 
             [ForeignKey("CivilityID")]
             public Civility Civility { get; set; }
-        }
+        
     }
 }

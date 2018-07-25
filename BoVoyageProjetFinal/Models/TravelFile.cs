@@ -7,6 +7,7 @@ using System.Web;
 
 namespace BoVoyageProjetFinal.Models
 {
+    [Table(name:"TravelFiles")]
     public class TravelFile: BaseModel
     {
         [Required(ErrorMessage = "Champ {0} obligatoire")]

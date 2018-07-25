@@ -14,5 +14,7 @@ namespace BoVoyageProjetFinal.Models
         [StringLength(30)]
         [Display(Name = "Agence de voyage")]
         public string Name { get; set; }
+
+        public ICollection<Travel> Travels { get; set; }
     }
 }

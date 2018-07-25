@@ -32,15 +32,20 @@ namespace BoVoyageProjetFinal.Models
         [DataType(DataType.Currency)]
         public decimal AllInclusivePrice{ get; set; }
 
+        [Required(ErrorMessage = "Le champ {0} est obligatoire")]
+        [Display(Name = "Agence de voyage")]
+        public int TravelAgencyID { get; set; }
+
         [ForeignKey("TravelAgencyId")]
         public TravelAgency TravelAgency { get; set; }
-        public int TravelAgencyId { get; set; }
+
+
+        [Required(ErrorMessage = "Le champ {0} est obligatoire")]
+        [Display(Name = "Destination")]
+        public int DestinationID { get; set; }
 
         [ForeignKey("DestinationId")]
         public Destination Destination { get; set; }
-        public int DestinationId { get; set; }
 
-
-        public void Reserve(int places) { }
     }
 }

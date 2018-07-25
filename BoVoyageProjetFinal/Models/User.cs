@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BoVoyageProjetFinal.Models
 {
-    public class User : Person
+    public abstract class User : Person
     {
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Email")]
@@ -17,7 +17,6 @@ namespace BoVoyageProjetFinal.Models
             ErrorMessage = "L'adresse mail n'est pas au bon format")]
        // [ExistingMailUser(ErrorMessage = "Le mail existe déjà.")]
         public string Mail { get; set; }
-
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Mot de passe")]
@@ -31,7 +30,5 @@ namespace BoVoyageProjetFinal.Models
         [Compare("Password", ErrorMessage = "Erreur sur la {0}.")]
         [NotMapped]
         public string ConfirmedPassword { get; set; }
-
-
     }
 }

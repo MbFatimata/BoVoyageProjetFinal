@@ -99,16 +99,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Civility.cs" />
-    <Compile Include="Models\MessageContact.cs" />
+    <Compile Include="Models\ContactMessage.cs" />
     <Compile Include="Models\Salesman.cs" />
     <Compile Include="Models\TravelFile.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Participant.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\ReasonAnnulationDossier.cs" />
     <Compile Include="Models\ReservationDossier.cs" />
-    <Compile Include="Models\ReservationDossierState.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Destination.cs" />
     <Compile Include="Models\Travel.cs" />

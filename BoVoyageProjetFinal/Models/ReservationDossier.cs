@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace BoVoyageProjetFinal.Models
 {
-    [Table(name: "DossiersReservation")]
+    [Table(name: "ReservationDossiers")]
     public class ReservationDossier : BaseModel
     {
         [Display(Name = "Assurance")]
-        public bool Assurance { get; set; }
+        public bool Insurance { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Numéro carte banquaire")]
@@ -22,7 +24,7 @@ namespace BoVoyageProjetFinal.Models
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Voyage")]
-        public int VoyageID { get; set; }
+        public int TravelID { get; set; }
 
         [ForeignKey("TravelID")]
         public Travel Travel { get; set; }
@@ -34,11 +36,17 @@ namespace BoVoyageProjetFinal.Models
         [ForeignKey("ClientID")]
         public Client Client { get; set; }
 
-        [Required(ErrorMessage = "Le champ {0} est obligatoire")]
-        [Display(Name = "Participant")]
-        public int ParticipantID { get; set; }
+        public ICollection<Participant> Participants { get; set; }
 
-        [ForeignKey("ParticipantID")]
-        public Participant Participant { get; set; }
+        [Required(ErrorMessage = "Le champ {0} est obligatoire")]
+        [Display(Name = "Etat du dossier de réservation")]
+        public int ReservationDossierStatus { get; set; }
+
+        [Required(ErrorMessage = "Le champ {0} est obligatoire")]
+        [Display(Name = "Raison de l'annulation du dossier")]
+        public int ReasonCancellationDossier { get; set; }
+
     }
+
+
 }
