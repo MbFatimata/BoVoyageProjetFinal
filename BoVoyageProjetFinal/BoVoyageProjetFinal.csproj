@@ -165,7 +165,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Clients\Create.cshtml" />
     <Content Include="Views\ContactMessages\Create.cshtml" />
-    <Content Include="Views\ContactMessages\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
