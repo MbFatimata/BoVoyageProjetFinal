@@ -167,6 +167,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Clients\Create.cshtml" />
     <Content Include="Views\ContactMessages\Create.cshtml" />
+    <Content Include="Views\AuthenticationClient\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -176,7 +177,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AuthenticationClient\" />
     <Folder Include="Views\VisitorTravels\" />
   </ItemGroup>
   <ItemGroup>
