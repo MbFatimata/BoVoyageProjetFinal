@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace BoVoyageProjetFinal.Models
 {
     [Table(name: "ContactMessages")]
-    public class ContactMessage
+    public class ContactMessage : BaseModel
     {
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Nom")]
