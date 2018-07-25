@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoVoyageProjetFinal.Data;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace BoVoyageProjetFinal.Migrations
 
         protected override void Seed(BoVoyageDbContext context)
         {
-            context.Civilities.AddOrUpdate(
+            /*
+              context.Civilities.AddOrUpdate(
                 new Models.Civility { Label = "Monsieur" },
                 new Models.Civility { Label = "Madame" },
                 new Models.Civility { Label = "Mademoiselle" });
+                */
         }
     }
 }
