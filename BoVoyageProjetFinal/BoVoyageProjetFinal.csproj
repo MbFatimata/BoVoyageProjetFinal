@@ -105,9 +105,9 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Participant.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\ReasonAnnulationFolder.cs" />
-    <Compile Include="Models\ReservationFolder.cs" />
-    <Compile Include="Models\ReservationFolderState.cs" />
+    <Compile Include="Models\ReasonAnnulationDossier.cs" />
+    <Compile Include="Models\ReservationDossier.cs" />
+    <Compile Include="Models\ReservationDossierState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Validator\ExistingMailUser.cs" />
   </ItemGroup>

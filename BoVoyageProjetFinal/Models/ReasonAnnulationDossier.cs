@@ -5,8 +5,8 @@ using System.Web;
 
 namespace BoVoyageProjetFinal.Models
 {
-    public class ReasonAnnulationFolder
+    public class ReasonAnnulationDossier
     {
-        public enum ReasonAnnulationFolder : byte { Client = 1, PlacesInsuffisantes }
+        public enum ReasonAnnulationDossier : byte { Client = 1, PlacesInsuffisantes }
     }
 }

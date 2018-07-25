@@ -6,7 +6,7 @@ using System.Web;
 namespace BoVoyageProjetFinal.Models
 {
     [Table(name: "DossiersReservation")]
-    public class DossierFolder : BaseModel
+    public class ReservationDossier : BaseModel
     {
         [Display(Name = "Assurance")]
         public bool Assurance { get; set; }
