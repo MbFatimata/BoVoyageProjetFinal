@@ -46,6 +46,5 @@ namespace BoVoyageProjetFinal.Models
 
         [ForeignKey("DestinationId")]
         public Destination Destination { get; set; }
-
     }
 }

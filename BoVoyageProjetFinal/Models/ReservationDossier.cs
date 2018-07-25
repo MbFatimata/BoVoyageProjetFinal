@@ -45,8 +45,5 @@ namespace BoVoyageProjetFinal.Models
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
         [Display(Name = "Raison de l'annulation du dossier")]
         public int ReasonCancellationDossier { get; set; }
-
     }
-
-
 }
