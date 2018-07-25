@@ -32,5 +32,6 @@ namespace BoVoyageProjetFinal.Models
         [NotMapped]
         public string ConfirmedPassword { get; set; }
 
+
     }
 }
