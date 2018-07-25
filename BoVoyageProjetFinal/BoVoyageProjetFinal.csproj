@@ -123,6 +123,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VisitorTravelsController.cs" />
     <Compile Include="Data\BoVoyageDbContext.cs" />
+    <Compile Include="filters\AuthenticationClientFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
