@@ -23,9 +23,5 @@ namespace BoVoyageProjetFinal.Data
         public DbSet<Travel> Travels { get; set; }
         public DbSet<TravelAgency> TravelAgencies { get; set; }
         public DbSet<TravelFile> TravelFiles { get; set; }
-
-
-
-
     }
 }
