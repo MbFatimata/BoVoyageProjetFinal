@@ -161,6 +161,11 @@
     <Content Include="Areas\BackOffice\Views\DashBoard\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\AuthenticationSalesman\Login.cshtml" />
     <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelAgenciesBO\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelAgenciesBO\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelAgenciesBO\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelAgenciesBO\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelAgenciesBO\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -195,6 +200,7 @@
     <Compile Include="Areas\BackOffice\Controllers\DestinationsBOController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ReservationDossiersBOController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\SalesmenBOController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\TravelAgenciesBOController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\TravelsBOController.cs" />
     <Compile Include="Areas\BackOffice\Models\AuthenticationSalesmanLoginViewModel.cs" />
     <Compile Include="Controllers\AuthenticationClientController.cs" />
