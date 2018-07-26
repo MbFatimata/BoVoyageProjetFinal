@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -70,11 +71,16 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.TravelsBO.Find(id);
+            Travel travel = db.TravelsBO.Include(x => x.Files).SingleOrDefault(x => x.ID == id);
+
+            // Room room = db.Rooms.Include(x => x.Files).SingleOrDefault(x => x.ID == id);
+
             if (travel == null)
             {
                 return HttpNotFound();
             }
+
+
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
             ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
@@ -122,6 +128,59 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             db.TravelsBO.Remove(travel);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+
+
+        [HttpPost]
+        public ActionResult AddFile(int id, HttpPostedFileBase upload)
+        {
+            if (upload.ContentLength > 0)
+            {
+
+                var model = new TravelFile();
+
+                model.TravelID = id;
+                model.Name = upload.FileName;
+                model.ContentType = upload.ContentType;
+
+                using (var reader = new BinaryReader(upload.InputStream))
+                {
+                    model.Content = reader.ReadBytes(upload.ContentLength);
+                }
+
+                db.TravelFiles.Add(model);
+                db.SaveChanges();
+                DisplayMessage("Le fichier a bien été ajouté !!!", MessageType.SUCCESS);
+                return RedirectToAction("Edit", new { id = model.TravelID });
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult DeleteFile(int id)
+        {
+            TravelFile travelFile = db.TravelFiles.Find(id);
+            db.TravelFiles.Remove(travelFile);
+            db.SaveChanges();
+
+            DisplayMessage("Le fichier a bien été supprimé", MessageType.SUCCESS);
+            return RedirectToAction("Edit", new { id = travelFile.TravelID });
+        }
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
