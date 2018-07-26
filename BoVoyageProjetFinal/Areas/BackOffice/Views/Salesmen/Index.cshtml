@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BoVoyageProjetFinal.Models.Salesman>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des commerciaux</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-info"><i class="fa fa-plus"></i> Ajouter une destination</a>
+</p>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Civility.Label)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Civility.Label)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthdate)
+            </td>
+            <td>
+                <a href="@Url.Action( "Edit", new { id=item.ID})"><i class="fa fa-edit text-warning"></i></a>
+                <a href="@Url.Action( "Details", new { id=item.ID})"><i class="fa fa-search"></i></a>
+                <a href="@Url.Action( "Delete", new { id=item.ID})"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+    }
+
+</table>
