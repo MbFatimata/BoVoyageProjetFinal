@@ -6,22 +6,23 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BoVoyageProjetFinal.Controllers;
 using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
 
 namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
 {
-    public class ReservationDossiersController : BaseController
+    public class ReservationDossiersBOController : Controller
     {
-        // GET: BackOffice/ReservationDossiers
+        private BoVoyageDbContext db = new BoVoyageDbContext();
+
+        // GET: BackOffice/ReservationDossiersBO
         public ActionResult Index()
         {
             var reservationDossiers = db.ReservationDossiers.Include(r => r.Client).Include(r => r.Travel);
             return View(reservationDossiers.ToList());
         }
 
-        // GET: BackOffice/ReservationDossiers/Details/5
+        // GET: BackOffice/ReservationDossiersBO/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +37,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(reservationDossier);
         }
 
-        // GET: BackOffice/ReservationDossiers/Create
+        // GET: BackOffice/ReservationDossiersBO/Create
         public ActionResult Create()
         {
             ViewBag.ClientID = new SelectList(db.Clients, "ID", "Mail");
@@ -44,7 +45,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View();
         }
 
-        // POST: BackOffice/ReservationDossiers/Create
+        // POST: BackOffice/ReservationDossiersBO/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -63,7 +64,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(reservationDossier);
         }
 
-        // GET: BackOffice/ReservationDossiers/Edit/5
+        // GET: BackOffice/ReservationDossiersBO/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,7 +81,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(reservationDossier);
         }
 
-        // POST: BackOffice/ReservationDossiers/Edit/5
+        // POST: BackOffice/ReservationDossiersBO/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -98,7 +99,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(reservationDossier);
         }
 
-        // GET: BackOffice/ReservationDossiers/Delete/5
+        // GET: BackOffice/ReservationDossiersBO/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +114,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(reservationDossier);
         }
 
-        // POST: BackOffice/ReservationDossiers/Delete/5
+        // POST: BackOffice/ReservationDossiersBO/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -122,6 +123,15 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             db.ReservationDossiers.Remove(reservationDossier);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

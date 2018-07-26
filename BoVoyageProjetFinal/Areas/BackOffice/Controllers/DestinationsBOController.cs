@@ -6,21 +6,22 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BoVoyageProjetFinal.Controllers;
 using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
 
 namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
 {
-    public class DestinationsController : BaseController
+    public class DestinationsBOController : Controller
     {
-        // GET: BackOffice/Destinations
+        private BoVoyageDbContext db = new BoVoyageDbContext();
+
+        // GET: BackOffice/DestinationsBO
         public ActionResult Index()
         {
             return View(db.Destinations.ToList());
         }
 
-        // GET: BackOffice/Destinations/Details/5
+        // GET: BackOffice/DestinationsBO/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,13 +36,13 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(destination);
         }
 
-        // GET: BackOffice/Destinations/Create
+        // GET: BackOffice/DestinationsBO/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: BackOffice/Destinations/Create
+        // POST: BackOffice/DestinationsBO/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,7 +59,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(destination);
         }
 
-        // GET: BackOffice/Destinations/Edit/5
+        // GET: BackOffice/DestinationsBO/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +74,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(destination);
         }
 
-        // POST: BackOffice/Destinations/Edit/5
+        // POST: BackOffice/DestinationsBO/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -89,7 +90,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(destination);
         }
 
-        // GET: BackOffice/Destinations/Delete/5
+        // GET: BackOffice/DestinationsBO/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +105,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(destination);
         }
 
-        // POST: BackOffice/Destinations/Delete/5
+        // POST: BackOffice/DestinationsBO/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -113,6 +114,15 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             db.Destinations.Remove(destination);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
