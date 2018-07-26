@@ -1,0 +1,90 @@
+﻿@model BoVoyageProjetFinal.Models.Travel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Travel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination.Continent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination.Continent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TravelAgency.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TravelAgency.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartureDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReturnDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailablePlaces)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvailablePlaces)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllInclusivePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllInclusivePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedAt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
