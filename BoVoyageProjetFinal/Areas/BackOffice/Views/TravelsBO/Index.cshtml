@@ -39,7 +39,8 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Destination.Continent)
+                @Html.DisplayFor(modelItem => item.Destination.Country)
+                @Html.DisplayFor(modelItem => item.Destination.Region)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TravelAgency.Name)
