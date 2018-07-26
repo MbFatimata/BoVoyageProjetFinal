@@ -16,6 +16,32 @@ namespace BoVoyageProjetFinal.Controllers
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 
+        // GET: /Clients
+        public ActionResult Index()
+        {
+            int? id = null;
+            if (Session["CLIENT"] != null)
+            {
+                id = ((Client)Session["CLIENT"]).ID;
+            }
+            Client client = db.Clients.Find(id);
+            return View(client);
+        }
+
+        // GET: Clients/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Client client = db.Clients.Find(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
+        }
 
         // GET: Clients/Create
         [HttpGet]
@@ -38,13 +64,80 @@ namespace BoVoyageProjetFinal.Controllers
                 client.Password = client.Password.HashMD5();
                 db.Clients.Add(client);
                 db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.CivilityID = new SelectList(db.Civilities, "ID", "Label", client.CivilityID);
             return View(client);
         }
-        
+
+        // GET: Clients/Edit
+        public ActionResult Edit()
+        {
+            int? id = null;
+            if (Session["CLIENT"] != null)
+            {
+                id = ((Client)Session["CLIENT"]).ID;
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Client client = db.Clients.Find(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.CivilityID = new SelectList(db.Civilities, "ID", "Label", client.CivilityID);
+            return View(client);
+        }
+
+        // POST: Clients/Edit/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ID,Mail,Password,ConfirmedPassword,LastName,FirstName,Address,Telephone,Birthdate,CivilityID")] Client client)
+        {
+            ModelState.Remove("Mail");
+
+            if (ModelState.IsValid)
+            {
+                client.Password = client.Password.HashMD5();
+                db.Entry(client).State = EntityState.Modified;
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CivilityID = new SelectList(db.Civilities, "ID", "Label", client.CivilityID);
+            return View();
+        }
+
+        // GET: Clients/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Client client = db.Clients.Find(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
+        }
+
+        // POST: Clients/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Client client = db.Clients.Find(id);
+            db.Clients.Remove(client);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

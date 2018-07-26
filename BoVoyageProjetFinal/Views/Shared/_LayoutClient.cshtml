@@ -15,25 +15,38 @@
 
 <body>
     <<div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Voyages</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mon profil</a>
-                    </li>
-                </ul>
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+             <a class="navbar-brand" href="~/">Accueil</a>
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 <ul class="navbar-nav mr-auto">
+                     <li class="nav-item">
+                         <a class="nav-link" href=" @Url.Action("About","Home") ">A propos</a>
+                     </li>
+                     <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             Voyages
+                         </a>
+                         <div class="dropdown-menu">
+                             <a class="dropdown-item" href="@Url.Action("Index","Travels")">Afficher</a>
+                             <a class="dropdown-item" href="#">Rechercher</a>
+                         </div>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="#">Voyages</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="@Url.Action("Edit","Clients")">Mon profil</a>
+                     </li>
+                 </ul>
 
-                <span class="navbar-text">
-                    Bonjour @client.FirstName @client.LastName <a href="@Url.Action("Logout", "AuthenticationClient")" class="btn btn-danger btn-sm"><i class="fa fa-sign-out"></i>Se deconnecter</a>
-                </span>
-            </div>
-        </nav>
+                 <span class="navbar-text">
+                     Bonjour @client.FirstName @client.LastName <a href="@Url.Action("Logout", "AuthenticationClient")" class="btn btn-danger btn-sm"><i class="fa fa-sign-out"></i>Se deconnecter</a>
+                 </span>
+             </div>
+         </nav>
         @RenderBody()
         <hr />
 
