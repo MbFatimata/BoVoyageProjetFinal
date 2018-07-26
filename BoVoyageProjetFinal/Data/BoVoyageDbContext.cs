@@ -20,8 +20,8 @@ namespace BoVoyageProjetFinal.Data
         public DbSet<Participant> Participants { get; set; }
         public DbSet<ReservationDossier> ReservationDossiers { get; set; }
         public DbSet<Salesman> Salesmen { get; set; }
-        public DbSet<Travel> Travels { get; set; }
-        public DbSet<TravelAgency> TravelAgencies { get; set; }
+        public DbSet<Travel> TravelsBO { get; set; }
+        public DbSet<TravelAgency> TravelAgenciesBO { get; set; }
         public DbSet<TravelFile> TravelFiles { get; set; }
     }
 }

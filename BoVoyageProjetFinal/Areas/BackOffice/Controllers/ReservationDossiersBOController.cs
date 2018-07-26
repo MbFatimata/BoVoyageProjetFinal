@@ -6,15 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageProjetFinal.Controllers;
 using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
 
 namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
 {
-    public class ReservationDossiersBOController : Controller
+    public class ReservationDossiersBOController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
-
         // GET: BackOffice/ReservationDossiersBO
         public ActionResult Index()
         {
@@ -41,7 +40,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         public ActionResult Create()
         {
             ViewBag.ClientID = new SelectList(db.Clients, "ID", "Mail");
-            ViewBag.TravelID = new SelectList(db.Travels, "ID", "ID");
+            ViewBag.TravelID = new SelectList(db.TravelsBO, "ID", "ID");
             return View();
         }
 
@@ -60,7 +59,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             }
 
             ViewBag.ClientID = new SelectList(db.Clients, "ID", "Mail", reservationDossier.ClientID);
-            ViewBag.TravelID = new SelectList(db.Travels, "ID", "ID", reservationDossier.TravelID);
+            ViewBag.TravelID = new SelectList(db.TravelsBO, "ID", "ID", reservationDossier.TravelID);
             return View(reservationDossier);
         }
 
@@ -77,7 +76,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
                 return HttpNotFound();
             }
             ViewBag.ClientID = new SelectList(db.Clients, "ID", "Mail", reservationDossier.ClientID);
-            ViewBag.TravelID = new SelectList(db.Travels, "ID", "ID", reservationDossier.TravelID);
+            ViewBag.TravelID = new SelectList(db.TravelsBO, "ID", "ID", reservationDossier.TravelID);
             return View(reservationDossier);
         }
 
@@ -95,7 +94,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ClientID = new SelectList(db.Clients, "ID", "Mail", reservationDossier.ClientID);
-            ViewBag.TravelID = new SelectList(db.Travels, "ID", "ID", reservationDossier.TravelID);
+            ViewBag.TravelID = new SelectList(db.TravelsBO, "ID", "ID", reservationDossier.TravelID);
             return View(reservationDossier);
         }
 
@@ -123,15 +122,6 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             db.ReservationDossiers.Remove(reservationDossier);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

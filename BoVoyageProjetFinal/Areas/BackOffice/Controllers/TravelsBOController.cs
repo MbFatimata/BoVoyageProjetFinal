@@ -6,19 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageProjetFinal.Controllers;
 using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
 
 namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
 {
-    public class TravelsBOController : Controller
+    public class TravelsBOController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
-
         // GET: BackOffice/TravelsBO
         public ActionResult Index()
         {
-            var travels = db.Travels.Include(t => t.Destination).Include(t => t.TravelAgency);
+            var travels = db.TravelsBO.Include(t => t.Destination).Include(t => t.TravelAgency);
             return View(travels.ToList());
         }
 
@@ -29,7 +28,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.Travels.Find(id);
+            Travel travel = db.TravelsBO.Find(id);
             if (travel == null)
             {
                 return HttpNotFound();
@@ -41,7 +40,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         public ActionResult Create()
         {
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent");
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name");
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name");
             return View();
         }
 
@@ -54,13 +53,13 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Travels.Add(travel);
+                db.TravelsBO.Add(travel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name", travel.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
         }
 
@@ -71,13 +70,13 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.Travels.Find(id);
+            Travel travel = db.TravelsBO.Find(id);
             if (travel == null)
             {
                 return HttpNotFound();
             }
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name", travel.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
         }
 
@@ -95,7 +94,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name", travel.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
         }
 
@@ -106,7 +105,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.Travels.Find(id);
+            Travel travel = db.TravelsBO.Find(id);
             if (travel == null)
             {
                 return HttpNotFound();
@@ -119,19 +118,10 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Travel travel = db.Travels.Find(id);
-            db.Travels.Remove(travel);
+            Travel travel = db.TravelsBO.Find(id);
+            db.TravelsBO.Remove(travel);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
