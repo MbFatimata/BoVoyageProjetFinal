@@ -103,6 +103,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\boVoyage.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Site.css" />
@@ -137,6 +138,26 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Areas\BackOffice\Views\web.config" />
     <Content Include="Areas\BackOffice\Views\Shared\_LayoutBO.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DestinationsBO\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DestinationsBO\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DestinationsBO\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DestinationsBO\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DestinationsBO\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelsBO\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelsBO\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelsBO\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelsBO\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\TravelsBO\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SalesmenBO\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SalesmenBO\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SalesmenBO\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SalesmenBO\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SalesmenBO\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReservationDossiersBO\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReservationDossiersBO\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReservationDossiersBO\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReservationDossiersBO\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\ReservationDossiersBO\Index.cshtml" />
     <Content Include="Areas\BackOffice\Views\Destinations\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\Destinations\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\Destinations\Details.cshtml" />
@@ -194,8 +215,13 @@
     <Compile Include="Areas\BackOffice\Controllers\TravelsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AuthenticationSalesmanController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\DestinationsBOController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ReservationDossiersBOController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SalesmenBOController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\TravelsBOController.cs" />
     <Compile Include="Areas\BackOffice\Models\AuthenticationSalesmanLoginViewModel.cs" />
     <Compile Include="Controllers\AuthenticationClientController.cs" />
+    <Compile Include="Controllers\AuthenticationFilterAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContactMessagesController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
@@ -258,6 +284,7 @@
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
     <Content Include="Views\Travels\Details.cshtml" />
     <Content Include="Views\Travels\Index.cshtml" />
+    <Content Include="Views\Shared\_DisplayMessage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

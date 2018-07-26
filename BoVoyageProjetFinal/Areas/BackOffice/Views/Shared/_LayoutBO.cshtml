@@ -9,9 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Backoffice | @ViewBag.Title</title>
 
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/boVoyage.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -36,8 +37,8 @@
                             Voyage
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="@Url.Action("Index", "Travels")">Voir</a>
-                            <a class="dropdown-item" href="@Url.Action("Create", "Travels")">Ajouter</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "TravelsBO")">Voir</a>
+                            <a class="dropdown-item" href="@Url.Action("Create", "TravelsBO")">Ajouter</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -45,8 +46,8 @@
                             Destination
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="@Url.Action("Index", "Destinations")">Voir</a>
-                            <a class="dropdown-item" href="@Url.Action("Create", "Destinations")">Ajouter</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "DestinationsBO")">Voir</a>
+                            <a class="dropdown-item" href="@Url.Action("Create", "DestinationsBO")">Ajouter</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -54,8 +55,8 @@
                             Dossier réservation
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="@Url.Action("Index", "ResrvationDossiers")">Voir</a>
-                            <a class="dropdown-item" href="@Url.Action("Create", "ResrvationDossiers")">Ajouter</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "ResrvationDossiersBO")">Voir</a>
+                            <a class="dropdown-item" href="@Url.Action("Create", "ResrvationDossiersBO")">Ajouter</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -63,8 +64,8 @@
                             Agent commercial
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="@Url.Action("Index", "Salesmen")">Voir</a>
-                            <a class="dropdown-item" href="@Url.Action("Create", "Salesmen")">Ajouter</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "SalesmenBO")">Voir</a>
+                            <a class="dropdown-item" href="@Url.Action("Create", "SalesmenBO")">Ajouter</a>
                         </div>
                     </li>
                 </ul>
