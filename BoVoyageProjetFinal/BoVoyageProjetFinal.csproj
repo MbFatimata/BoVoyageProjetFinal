@@ -169,10 +169,10 @@
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\AuthenticationClientController.cs" />
-    <Compile Include="Controllers\AuthenticationFilterAttribute.cs" />
     <Compile Include="Controllers\ContactMessagesController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TravelsController.cs" />
     <Compile Include="Data\BoVoyageDbContext.cs" />
     <Compile Include="filters\AuthenticationClientFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,6 +227,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\AuthenticationClient\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
+    <Content Include="Views\Travels\Details.cshtml" />
+    <Content Include="Views\Travels\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

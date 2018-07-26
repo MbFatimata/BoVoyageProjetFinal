@@ -1,4 +1,5 @@
 ﻿using BoVoyageProjetFinal.Data;
+using BoVoyageProjetFinal.filters;
 using BoVoyageProjetFinal.Models;
 using BoVoyageProjetFinal.Utils;
 using System;
@@ -43,7 +44,7 @@ namespace BoVoyageProjetFinal.Controllers
             return View(model);
         }
 
-        [AuthenticationFilter]
+        [AuthenticationClientFilter]
         // Gey: AuthenticationClient/Logout
         public ActionResult Logout()
         {
