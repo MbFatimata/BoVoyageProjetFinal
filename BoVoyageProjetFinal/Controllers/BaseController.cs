@@ -23,7 +23,7 @@ namespace BoVoyageProjetFinal.Controllers
                     TempData["MessageType"] = "warning";
                     break;
                 case MessageType.ERROR:
-                    TempData["MessageType"] = "error";
+                    TempData["MessageType"] = "danger";
                     break;
             }
         }

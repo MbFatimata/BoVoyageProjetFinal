@@ -46,7 +46,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,CreatedAt,Deleted,DeletedAt")] TravelAgency travelAgency)
+        public ActionResult Create([Bind(Include = "ID,Name")] TravelAgency travelAgency)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,CreatedAt,Deleted,DeletedAt")] TravelAgency travelAgency)
+        public ActionResult Edit([Bind(Include = "ID,Name")] TravelAgency travelAgency)
         {
             if (ModelState.IsValid)
             {
@@ -110,8 +110,26 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TravelAgency travelAgency = db.TravelAgenciesBO.Find(id);
-            db.TravelAgenciesBO.Remove(travelAgency);
+            if (travelAgency == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // Cherche si l'agence propose au moins un voyage
+            var agencyexistingtravels = db.TravelsBO.Where(x => x.TravelAgencyID == id).Count();
+            if (agencyexistingtravels != 0)
+            {
+                DisplayMessage("Cette agence propose des voyages et ne peut donc pas être supprimée !!!", MessageType.ERROR);
+                return RedirectToAction("Index");
+            }
+
+            // db.TravelAgenciesBO.Remove(travelAgency);
+            travelAgency.Deleted = true;
+            travelAgency.DeletedAt = DateTime.Now;
+            db.Entry(travelAgency).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
+            TempData["Message"] = "Cette agence a été correctement supprimée !!!";
+            DisplayMessage("Cette agence a été correctement supprimée !!!", MessageType.SUCCESS);
             return RedirectToAction("Index");
         }
     }
