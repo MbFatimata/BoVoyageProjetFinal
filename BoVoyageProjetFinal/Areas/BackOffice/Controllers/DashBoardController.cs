@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
+namespace BoVoyageProjetFinal.Areas.BackOffice
 {
-    public class HomeController : Controller
+    public class DashBoardController : Controller
     {
-        // GET: BackOffice/Home
+        // GET: BackOffice/DashBoard
         public ActionResult Index()
         {
             return View();
