@@ -1,6 +1,6 @@
 ﻿using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
-using BoVoyageProjetFinal.Views.Clients;
+using BoVoyageProjetFinal.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
