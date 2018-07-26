@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,7 +18,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // GET: BackOffice/TravelsBO
         public ActionResult Index()
         {
-            var travels = db.Travels.Include(t => t.Destination).Include(t => t.TravelAgency);
+            var travels = db.TravelsBO.Include(t => t.Destination).Include(t => t.TravelAgency);
             return View(travels.ToList());
         }
 
@@ -28,7 +29,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.Travels.Find(id);
+            Travel travel = db.TravelsBO.Find(id);
             if (travel == null)
             {
                 return HttpNotFound();
@@ -40,7 +41,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         public ActionResult Create()
         {
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent");
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name");
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name");
             return View();
         }
 
@@ -53,31 +54,14 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Travels.Add(travel);
+                db.TravelsBO.Add(travel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name", travel.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
-        }
-
-        //GET: BackOffice/TravelsBO/search
-        public ActionResult Search(DateTime? departureDate = null, DateTime? returnDate = null, Decimal? allInclusivePrice = null)
-        {
-            IQueryable<Travel> liste = db.Travels.Where(x => !x.Deleted);
-
-            if (departureDate != null)
-                liste = liste.Where(x => x.DepartureDate == departureDate);
-
-            if (returnDate != null)
-                liste = liste.Where(x => x.ReturnDate == returnDate);
-
-            if (allInclusivePrice != null)
-                liste = liste.Where(x => x.AllInclusivePrice == allInclusivePrice);
-
-            return View("Index", liste);
         }
 
         // GET: BackOffice/TravelsBO/Edit/5
@@ -87,13 +71,18 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.Travels.Find(id);
+            Travel travel = db.TravelsBO.Include(x => x.Files).SingleOrDefault(x => x.ID == id);
+
+            // Room room = db.Rooms.Include(x => x.Files).SingleOrDefault(x => x.ID == id);
+
             if (travel == null)
             {
                 return HttpNotFound();
             }
+
+
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name", travel.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
         }
 
@@ -111,7 +100,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name", travel.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
         }
 
@@ -122,7 +111,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.Travels.Find(id);
+            Travel travel = db.TravelsBO.Find(id);
             if (travel == null)
             {
                 return HttpNotFound();
@@ -135,10 +124,63 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Travel travel = db.Travels.Find(id);
-            db.Travels.Remove(travel);
+            Travel travel = db.TravelsBO.Find(id);
+            db.TravelsBO.Remove(travel);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+
+
+        [HttpPost]
+        public ActionResult AddFile(int id, HttpPostedFileBase upload)
+        {
+            if (upload.ContentLength > 0)
+            {
+
+                var model = new TravelFile();
+
+                model.TravelID = id;
+                model.Name = upload.FileName;
+                model.ContentType = upload.ContentType;
+
+                using (var reader = new BinaryReader(upload.InputStream))
+                {
+                    model.Content = reader.ReadBytes(upload.ContentLength);
+                }
+
+                db.TravelFiles.Add(model);
+                db.SaveChanges();
+                DisplayMessage("Le fichier a bien été ajouté !!!", MessageType.SUCCESS);
+                return RedirectToAction("Edit", new { id = model.TravelID });
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult DeleteFile(int id)
+        {
+            TravelFile travelFile = db.TravelFiles.Find(id);
+            db.TravelFiles.Remove(travelFile);
+            db.SaveChanges();
+
+            DisplayMessage("Le fichier a bien été supprimé", MessageType.SUCCESS);
+            return RedirectToAction("Edit", new { id = travelFile.TravelID });
+        }
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

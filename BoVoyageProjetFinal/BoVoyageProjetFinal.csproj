@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201807251416271_AjoutAttributsModel.Designer.cs">
       <DependentUpon>201807251416271_AjoutAttributsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807261545443_AjoutFilesClasseTravel.cs" />
+    <Compile Include="Migrations\201807261545443_AjoutFilesClasseTravel.Designer.cs">
+      <DependentUpon>201807261545443_AjoutFilesClasseTravel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthenticationClientLoginViewModel.cs" />
     <Compile Include="Models\Civility.cs" />
@@ -270,6 +274,10 @@
     <Content Include="Views\Shared\_DisplayMessage.cshtml" />
     <Content Include="Views\Shared\_LayoutClient.cshtml" />
     <Content Include="Views\HomeClient\Index.cshtml" />
+    <Content Include="Views\Clients\Delete.cshtml" />
+    <Content Include="Views\Clients\Details.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -288,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807251416271_AjoutAttributsModel.resx">
       <DependentUpon>201807251416271_AjoutAttributsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261545443_AjoutFilesClasseTravel.resx">
+      <DependentUpon>201807261545443_AjoutFilesClasseTravel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
