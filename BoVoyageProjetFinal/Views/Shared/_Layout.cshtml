@@ -36,23 +36,28 @@
                         <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
+                @*
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Create", "Users")">Nouvel utilisateur</a>
                 </li>
-
+                    *@
                 @*
-                    <li class="nav-item active">
-                        <a class="nav-link" href="@Url.Action("Index", "Dashboard", new { area = "BackOffice" })">Back Office<span class="sr-only">(current)</span></a>
-                    </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Dashboard", new { area = "BackOffice" })">Back Office<span class="sr-only">(current)</span></a>
+            </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Create", "Users")">Nouvel utilisateur</a>
-                    </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Create", "Users")">Nouvel utilisateur</a>
+            </li>
                 *@
             </ul>
 
             <span class="navbar-text">
-                <a href="@Url.Action("Login", "Authentication", new { area = "BackOffice" })" class="btn btn-warning btn-sm">Se connecter<i class="fa fa-sign-in"></i></a>
+                <a href="@Url.Action("Create", "Clients")" class="btn btn-warning btn-sm">Créer un compte!</a>
+            </span>
+
+            <span class="navbar-text">
+                <a href="@Url.Action("Login", "AuthenticationClient")" class="btn btn-warning btn-sm">Se connecter<i class="fa fa-sign-in"></i></a>
             </span>
         </div>
     </nav>
