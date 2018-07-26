@@ -40,7 +40,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         public ActionResult Create()
         {
             ViewBag.ClientID = new SelectList(db.Clients, "ID", "Mail");
-            ViewBag.TravelID = new SelectList(db.TravelsBO, "ID", "ID");
+            ViewBag.TravelID = new SelectList(db.Travels, "ID", "ID");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             }
 
             ViewBag.ClientID = new SelectList(db.Clients, "ID", "Mail", reservationDossier.ClientID);
-            ViewBag.TravelID = new SelectList(db.TravelsBO, "ID", "ID", reservationDossier.TravelID);
+            ViewBag.TravelID = new SelectList(db.Travels, "ID", "ID", reservationDossier.TravelID);
             return View(reservationDossier);
         }
 
@@ -76,7 +76,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
                 return HttpNotFound();
             }
             ViewBag.ClientID = new SelectList(db.Clients, "ID", "Mail", reservationDossier.ClientID);
-            ViewBag.TravelID = new SelectList(db.TravelsBO, "ID", "ID", reservationDossier.TravelID);
+            ViewBag.TravelID = new SelectList(db.Travels, "ID", "ID", reservationDossier.TravelID);
             return View(reservationDossier);
         }
 
@@ -94,7 +94,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ClientID = new SelectList(db.Clients, "ID", "Mail", reservationDossier.ClientID);
-            ViewBag.TravelID = new SelectList(db.TravelsBO, "ID", "ID", reservationDossier.TravelID);
+            ViewBag.TravelID = new SelectList(db.Travels, "ID", "ID", reservationDossier.TravelID);
             return View(reservationDossier);
         }
 

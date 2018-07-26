@@ -17,7 +17,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // GET: BackOffice/TravelAgenciesBO
         public ActionResult Index()
         {
-            return View(db.TravelAgenciesBO.ToList());
+            return View(db.TravelAgencies.ToList());
         }
 
         // GET: BackOffice/TravelAgenciesBO/Details/5
@@ -27,7 +27,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TravelAgency travelAgency = db.TravelAgenciesBO.Find(id);
+            TravelAgency travelAgency = db.TravelAgencies.Find(id);
             if (travelAgency == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TravelAgenciesBO.Add(travelAgency);
+                db.TravelAgencies.Add(travelAgency);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TravelAgency travelAgency = db.TravelAgenciesBO.Find(id);
+            TravelAgency travelAgency = db.TravelAgencies.Find(id);
             if (travelAgency == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TravelAgency travelAgency = db.TravelAgenciesBO.Find(id);
+            TravelAgency travelAgency = db.TravelAgencies.Find(id);
             if (travelAgency == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TravelAgency travelAgency = db.TravelAgenciesBO.Find(id);
-            db.TravelAgenciesBO.Remove(travelAgency);
+            TravelAgency travelAgency = db.TravelAgencies.Find(id);
+            db.TravelAgencies.Remove(travelAgency);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -17,7 +17,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // GET: BackOffice/TravelsBO
         public ActionResult Index()
         {
-            var travels = db.TravelsBO.Include(t => t.Destination).Include(t => t.TravelAgency);
+            var travels = db.Travels.Include(t => t.Destination).Include(t => t.TravelAgency);
             return View(travels.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.TravelsBO.Find(id);
+            Travel travel = db.Travels.Find(id);
             if (travel == null)
             {
                 return HttpNotFound();
@@ -40,7 +40,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         public ActionResult Create()
         {
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent");
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name");
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name");
             return View();
         }
 
@@ -53,14 +53,31 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TravelsBO.Add(travel);
+                db.Travels.Add(travel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name", travel.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
+        }
+
+        //GET: BackOffice/TravelsBO/search
+        public ActionResult Search(DateTime? departureDate = null, DateTime? returnDate = null, Decimal? allInclusivePrice = null)
+        {
+            IQueryable<Travel> liste = db.Travels.Where(x => !x.Deleted);
+
+            if (departureDate != null)
+                liste = liste.Where(x => x.DepartureDate == departureDate);
+
+            if (returnDate != null)
+                liste = liste.Where(x => x.ReturnDate == returnDate);
+
+            if (allInclusivePrice != null)
+                liste = liste.Where(x => x.AllInclusivePrice == allInclusivePrice);
+
+            return View("Index", liste);
         }
 
         // GET: BackOffice/TravelsBO/Edit/5
@@ -70,13 +87,13 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.TravelsBO.Find(id);
+            Travel travel = db.Travels.Find(id);
             if (travel == null)
             {
                 return HttpNotFound();
             }
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name", travel.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
         }
 
@@ -94,7 +111,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", travel.DestinationID);
-            ViewBag.TravelAgencyID = new SelectList(db.TravelAgenciesBO, "ID", "Name", travel.TravelAgencyID);
+            ViewBag.TravelAgencyID = new SelectList(db.TravelAgencies, "ID", "Name", travel.TravelAgencyID);
             return View(travel);
         }
 
@@ -105,7 +122,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.TravelsBO.Find(id);
+            Travel travel = db.Travels.Find(id);
             if (travel == null)
             {
                 return HttpNotFound();
@@ -118,8 +135,8 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Travel travel = db.TravelsBO.Find(id);
-            db.TravelsBO.Remove(travel);
+            Travel travel = db.Travels.Find(id);
+            db.Travels.Remove(travel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

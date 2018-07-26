@@ -18,7 +18,7 @@ namespace BoVoyageProjetFinal.Controllers
         // GET: Travels
         public ActionResult Index()
         {
-            var travels = db.TravelsBO.Include(t => t.Destination).Include(t => t.TravelAgency);
+            var travels = db.Travels.Include(t => t.Destination).Include(t => t.TravelAgency);
             return View(travels.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace BoVoyageProjetFinal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.TravelsBO.Find(id);
+            Travel travel = db.Travels.Find(id);
             if (travel == null)
             {
                 return HttpNotFound();
