@@ -10,6 +10,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
+    <div class="container">
     @*Cas 2 erreur authentification*@
     @if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
     {
@@ -45,7 +46,7 @@
         </div>
     }
     <div>
-
+</div>
     </div>
     <script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <script src="~/Scripts/popper.js"></script>
