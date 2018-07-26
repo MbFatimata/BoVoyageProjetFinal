@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace BoVoyageProjetFinal.Areas.BackOffice
 {
-    [AuthenticationSalesmanFilter]
+    //[AuthenticationSalesmanFilter]
     public class DashBoardController : Controller
     {
         // GET: BackOffice/DashBoard
