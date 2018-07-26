@@ -1,0 +1,82 @@
+﻿@model BoVoyageProjetFinal.Models.ReservationDossier
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ReservationDossier</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Client.Mail)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Client.Mail)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Travel.ID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Travel.ID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Insurance)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Insurance)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CreditCardNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CreditCardNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TotalPrice)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ReservationDossierStatus)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ReservationDossierStatus)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ReasonCancellationDossier)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ReasonCancellationDossier)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
