@@ -1,0 +1,32 @@
+﻿@model IEnumerable<BoVoyageProjetFinal.Models.TravelAgency>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Where(x => !x.Deleted))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a href="@Url.Action( "Edit", new { id=item.ID})"><i class="fa fa-edit text-warning"></i></a>
+                <a href="@Url.Action( "Details", new { id=item.ID})"><i class="fa fa-search"></i></a>
+                <a href="@Url.Action( "Delete", new { id=item.ID})"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+    }
+
+</table>

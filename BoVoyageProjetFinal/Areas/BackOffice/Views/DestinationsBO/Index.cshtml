@@ -1,52 +1,52 @@
 ﻿@model IEnumerable<BoVoyageProjetFinal.Models.Destination>
 
-    @{
-        ViewBag.Title = "Index";
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des destinations</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-info"><i class="fa fa-plus"></i> Ajouter une destination</a>
+</p>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Continent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Region)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Continent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a href="@Url.Action( "Edit", new { id=item.ID})"><i class="fa fa-edit text-warning"></i></a>
+                <a href="@Url.Action( "Details", new { id=item.ID})"><i class="fa fa-search"></i></a>
+                <a href="@Url.Action( "Delete", new { id=item.ID})"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
     }
 
-    <h2>Liste des destinations</h2>
-
-    <p>
-        <a href="@Url.Action("Create")" class="btn btn-info"><i class="fa fa-plus"></i> Ajouter une destination</a>
-    </p>
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Continent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Region)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Continent)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Region)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    <a href="@Url.Action( "Edit", new { id=item.ID})"><i class="fa fa-edit text-warning"></i></a>
-                    <a href="@Url.Action( "Details", new { id=item.ID})"><i class="fa fa-search"></i></a>
-                    <a href="@Url.Action( "Delete", new { id=item.ID})"><i class="fa fa-trash"></i></a>
-                </td>
-            </tr>
-        }
-
-    </table>
+</table>
