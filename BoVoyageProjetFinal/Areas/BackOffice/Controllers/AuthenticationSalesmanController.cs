@@ -1,31 +1,33 @@
-﻿using BoVoyageProjetFinal.Data;
-using BoVoyageProjetFinal.filters;
-using BoVoyageProjetFinal.Models;
-using BoVoyageProjetFinal.Utils;
+﻿using BoVoyageProjetFinal.Areas.BackOffice.Models;
+using BoVoyageProjetFinal.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageProjetFinal.Utils;
+using BoVoyageProjetFinal.filters;
 
-namespace BoVoyageProjetFinal.Controllers
+namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
 {
-    public class AuthenticationClientController : Controller
+    public class AuthenticationSalesmanController : Controller
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
+
         // GET: /AuthenticationClient/Login
         public ActionResult Login()
         {
             return View();
         }
+
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Login(AuthenticationClientLoginViewModel model)
+        public ActionResult Login(AuthenticationSalesmanLoginViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var passwordHash = model.Password.HashMD5();
-                var client = db.Clients.SingleOrDefault(x => x.Mail == model.Login && x.Password == passwordHash);
+                var client = db.Salesmen.SingleOrDefault(x => x.Mail == model.Login && x.Password == passwordHash);
                 if (client == null)
                 {
                     //1
@@ -37,24 +39,24 @@ namespace BoVoyageProjetFinal.Controllers
                 }
                 else
                 {
-                    Session.Add("CLIENT", client);
-                    return RedirectToAction("Index", "Home");// a modifier pour rediriger ver la site Web Client
+                    Session.Add("USER_BO", client);
+                    return RedirectToAction("Index", "DashBoard");
                 }
             }
             return View(model);
         }
 
-        [AuthenticationClientFilter]
-        // Gey: AuthenticationClient/Logout
+        [AuthenticationSalesmanFilter]
+        // GeT: AuthenticationClient/Logout
         public ActionResult Logout()
         {
             Session.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "DashBoard");
         }
 
         protected override void Dispose(bool disposing) //pour liberer connexion à la base de donnees lorque controleur a fini de l'utiliser
         {
-           if (disposing)
+            if (disposing)
             {
                 db.Dispose();
             }
