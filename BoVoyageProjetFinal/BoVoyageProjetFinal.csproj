@@ -137,7 +137,7 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Areas\BackOffice\Views\web.config" />
     <Content Include="Areas\BackOffice\Views\Shared\_LayoutBO.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Home\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DashBoard\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -167,7 +167,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\HomeController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\AuthenticationClientController.cs" />
     <Compile Include="Controllers\AuthenticationFilterAttribute.cs" />
     <Compile Include="Controllers\ContactMessagesController.cs" />
