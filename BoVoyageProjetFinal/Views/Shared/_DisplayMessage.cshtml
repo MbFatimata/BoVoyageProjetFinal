@@ -1,0 +1,10 @@
+﻿@{
+    Layout = null;
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-@TempData["MessageType"].ToString()">
+        @TempData["MEssage"].ToString()
+    </div>
+}
