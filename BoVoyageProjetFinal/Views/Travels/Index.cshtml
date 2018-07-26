@@ -62,18 +62,9 @@
             @Html.DisplayFor(modelItem => item.AllInclusivePrice)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedAt)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+            <a href="@Url.Action("Details", new { id=item.ID })"><i class="fa fa-search text-warning"></i></a>
+
         </td>
     </tr>
 }

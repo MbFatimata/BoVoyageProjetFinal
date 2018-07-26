@@ -36,7 +36,8 @@ namespace BoVoyageProjetFinal.Controllers
             }
             return View(travel);
         }
-
+        
+        //Faire methode search après initialisation de données
 
         protected override void Dispose(bool disposing)
         {
