@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201807251416271_AjoutAttributsModel.Designer.cs">
       <DependentUpon>201807251416271_AjoutAttributsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807261545443_AjoutFilesClasseTravel.cs" />
+    <Compile Include="Migrations\201807261545443_AjoutFilesClasseTravel.Designer.cs">
+      <DependentUpon>201807261545443_AjoutFilesClasseTravel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthenticationClientLoginViewModel.cs" />
     <Compile Include="Models\Civility.cs" />
@@ -292,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807251416271_AjoutAttributsModel.resx">
       <DependentUpon>201807251416271_AjoutAttributsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261545443_AjoutFilesClasseTravel.resx">
+      <DependentUpon>201807261545443_AjoutFilesClasseTravel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

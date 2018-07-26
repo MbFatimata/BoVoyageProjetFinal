@@ -46,5 +46,7 @@ namespace BoVoyageProjetFinal.Models
 
         [ForeignKey("DestinationID")]
         public Destination Destination { get; set; }
+
+        public ICollection<TravelFile> Files { get; set; }
     }
 }
