@@ -30,7 +30,6 @@ namespace BoVoyageProjetFinal.Views.Clients
             {
                 throw;
             }
-
         }
     }
 }
