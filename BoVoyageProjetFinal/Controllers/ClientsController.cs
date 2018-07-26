@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
-using BoVoyageProjetFinal.Views.Clients;
+using BoVoyageProjetFinal.Utils;
 
 namespace BoVoyageProjetFinal.Controllers
 {
