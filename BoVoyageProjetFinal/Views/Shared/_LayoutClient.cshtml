@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+    var client = Session["CLIENT"] as BoVoyageProjetFinal.Models.Client;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Accueil Client | @ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <<div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Voyages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mon profil</a>
+                    </li>
+                </ul>
+
+                <span class="navbar-text">
+                    Bonjour @client.FirstName @client.LastName <a href="@Url.Action("Logout", "AuthenticationClient")" class="btn btn-danger btn-sm"><i class="fa fa-sign-out"></i>Se deconnecter</a>
+                </span>
+            </div>
+        </nav>
+        @RenderBody()
+        <hr />
+
+        <footer class="bg-dark text-white">
+            &copy; 2018  BoVoyage
+            @*@Html.Partial("_TopFive", *@
+            @*@@Html.Action("TopFive", "Shared")*@
+        </footer>
+
+    </div>
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("SectionScripts", false)
+</body>
+</html>

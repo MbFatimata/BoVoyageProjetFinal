@@ -38,7 +38,7 @@ namespace BoVoyageProjetFinal.Controllers
                 else
                 {
                     Session.Add("CLIENT", client);
-                    return RedirectToAction("Index", "Home");// a modifier pour rediriger ver la site Web Client
+                    return RedirectToAction("Index", "HomeClient");// a modifier pour rediriger ver la site Web Client
                 }
             }
             return View(model);
