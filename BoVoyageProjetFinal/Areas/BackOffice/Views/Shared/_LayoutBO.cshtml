@@ -1,6 +1,6 @@
 ﻿@{ 
     Layout = null;
-    @*var salesman = Session["SALESMAN_BO"] as BoVoyageProjetFinal.Models.Salesman;*@
+    var user = Session["USER_BO"] as BoVoyageProjetFinal.Models.Salesman;
 }
 
 <!DOCTYPE html>
@@ -68,9 +68,9 @@
                         </div>
                     </li>
                 </ul>
-                @*<span class="navbar-text">
-            Bonjour @Salesmen.Lastname @Salesmen.Firstname<a href="@Url.Action("Logout", "Authentication")" class="col-2 btn-outline-warning"><i class="fa fa-user"> Se déconnecter</i></a>
-        </span>*@
+                <span class="navbar-text">
+            Bonjour @user.LastName @user.FirstName<a href="@Url.Action("Logout", "Authentication")" class="col-2 btn-outline-warning"><i class="fa fa-user"> Se déconnecter</i></a>
+        </span>
             </div>
         </nav>
 
