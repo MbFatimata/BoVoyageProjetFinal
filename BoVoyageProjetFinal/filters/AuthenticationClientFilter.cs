@@ -10,7 +10,7 @@ namespace BoVoyageProjetFinal.filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session["CLIENT_BO"] == null)
+            if (filterContext.HttpContext.Session["CLIENT"] == null)
             {
                 filterContext.Result = new RedirectResult("\\AuthenticationClient\\Login");
             }

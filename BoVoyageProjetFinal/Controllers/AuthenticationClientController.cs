@@ -36,12 +36,11 @@ namespace BoVoyageProjetFinal.Controllers
                 }
                 else
                 {
-                    Session.Add("CLIENT_BO", client);
+                    Session.Add("CLIENT", client);
                     return RedirectToAction("Index", "Home");// a modifier pour rediriger ver la site Web Client
                 }
             }
             return View(model);
-
         }
 
         [AuthenticationFilter]
