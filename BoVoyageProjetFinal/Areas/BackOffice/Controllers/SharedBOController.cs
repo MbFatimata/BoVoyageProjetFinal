@@ -13,10 +13,15 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         [ChildActionOnly]
         public ActionResult TopFifteenTravels()
         {
-
             var travels = db.Travels.Include("Destination").Include("TravelAgency").OrderBy(x => x.DepartureDate).Take(15);
-            //var travels = db.Travels.OrderByDescending(x => x.DepartureDate).Take(15);
             return View("_TopFifteenTravels", travels);
+        }
+
+        [ChildActionOnly]
+        public ActionResult DossiersReservationsAwaitingReturn()
+        {
+            var reservations = db.ReservationDossiers.Include("Client").Include("Participant").Include("Travel").GroupBy(x => x.ReservationDossierStatus == 0);
+            return View("_DossiersReservationsAwaitingReturn", reservations);
         }
     }
 }
