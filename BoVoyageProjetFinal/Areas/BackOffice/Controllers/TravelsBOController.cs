@@ -20,11 +20,22 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         public ActionResult Index(TravelBOViewModel model)
         {
             IEnumerable<Travel> liste = db.Travels.Include("Destination").Include("TravelAgency");
+
             if (model.DepartureDateMax != null)
                 liste = liste.Where(x => x.DepartureDate <= model.DepartureDateMax);
 
             if (model.DepartureDateMin != null)
-                liste = liste.Where(x => x.DepartureDate => model.DepartureDateMin);
+                liste = liste.Where(x => x.DepartureDate >= model.DepartureDateMin);
+
+            if (model.ReturnDateMax != null)
+                liste = liste.Where(x => x.ReturnDate <= model.ReturnDateMax);
+
+            if (model.ReturnDateMin != null)
+                liste = liste.Where(x => x.ReturnDate >= model.ReturnDateMin);
+
+
+            if (model.AllInclusivePriceMax != null)
+                liste = liste.Where(x => x.AllInclusivePrice >= model.AllInclusivePriceMax);
 
             return View(model);
         }
