@@ -84,6 +84,14 @@
 
     </dl>
 </div>
+<div class="row">
+    @foreach (var file in Model.Files)
+    {
+        <div class="col-md-3">
+            <img class="img-thumbnail" src="data:@file.ContentType;base64, @System.Convert.ToBase64String(file.Content)" height="256" />
+        </div>
+    }
+</div>
 <p>
     <a class="btn btn-primary" href="@Url.Action("Create","ReservationDossiers")" role="button">Réserver ce voyage</a>
     <a class="btn btn-primary" href="@Url.Action("Index","TravelsClient")" role="button">Retour aux voyages</a>
