@@ -77,6 +77,15 @@
                             <a class="dropdown-item" href="@Url.Action("Create", "SalesmenBO")">Ajouter</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Client
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="@Url.Action("Index", "ClientsBO")">Voir</a>
+                            <a class="dropdown-item" href="@Url.Action("Create", "ClientsBO")">Ajouter</a>
+                        </div>
+                    </li>
                 </ul>
                 @if (user != null)
                 {
