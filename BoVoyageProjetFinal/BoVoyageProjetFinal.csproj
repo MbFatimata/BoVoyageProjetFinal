@@ -292,6 +292,7 @@
     <Content Include="Views\ReservationDossiers\Edit.cshtml" />
     <Content Include="Views\ReservationDossiers\Index.cshtml" />
     <Content Include="Views\Shared\_TopFiveTravelsDepartureDate.cshtml" />
+    <Content Include="Views\Shared\_TopFiveTravelsPrice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

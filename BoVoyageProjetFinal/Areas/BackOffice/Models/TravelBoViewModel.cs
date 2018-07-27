@@ -42,6 +42,9 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Models
         [Display(Name = "Region")]
         public string Region { get; set; }
 
+        [Display(Name = "Agence")]
+        public string Name { get; set; }
+
         public IEnumerable<Travel> TravelsBO { get; set; }
     }
 }

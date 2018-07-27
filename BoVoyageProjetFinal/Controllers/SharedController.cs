@@ -13,7 +13,16 @@ namespace BoVoyageProjetFinal.Controllers
         public ActionResult TopFiveTravelsDepartureDate()
         {
             var travels = db.Travels.Include("Destination").Include("TravelAgency").OrderBy(x => x.DepartureDate).Take(5);
-            return View("TopFiveTravelsDepartureDate", travels);
+            return View("_TopFiveTravelsDepartureDate", travels);
         }
+
+        // GET: Shared
+        [ChildActionOnly]
+        public ActionResult TopFiveAllInclusivePrice()
+        {
+            var travels = db.Travels.Include("Destination").Include("TravelAgency").OrderBy(x => x.AllInclusivePrice).Take(5);
+            return View("_TopFiveTravelsDepartureDate", travels);
+        }
+
     }
 }

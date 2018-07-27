@@ -19,7 +19,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // GET: BackOffice/TravelsBO
         public ActionResult Index(TravelBOViewModel model)
         {
-            IEnumerable<Travel> liste = db.Travels.Include("Destination").Include("TravelAgency");
+            IEnumerable<Travel> liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency);
 
             if (model.DepartureDateMax != null)
                 liste = liste.Where(x => x.DepartureDate <= model.DepartureDateMax);
@@ -33,10 +33,25 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             if (model.ReturnDateMin != null)
                 liste = liste.Where(x => x.ReturnDate >= model.ReturnDateMin);
 
-
             if (model.AllInclusivePriceMax != null)
-                liste = liste.Where(x => x.AllInclusivePrice >= model.AllInclusivePriceMax);
+                liste = liste.Where(x => x.AllInclusivePrice <= model.AllInclusivePriceMax);
 
+            if (model.AllInclusivePriceMin != null)
+                liste = liste.Where(x => x.AllInclusivePrice >= model.AllInclusivePriceMin);
+
+            if (!string.IsNullOrWhiteSpace(model.Continent))
+                liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency).Where(x => x.Destination.Continent.Contains(model.Continent));
+
+            if (!string.IsNullOrWhiteSpace(model.Country))
+                liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency).Where(x => x.Destination.Country.Contains(model.Country));
+
+            if (!string.IsNullOrWhiteSpace(model.Region))
+                liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency).Where(x => x.Destination.Region.Contains(model.Region));
+
+            if (!string.IsNullOrWhiteSpace(model.Name))
+                liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency).Where(x => x.TravelAgency.Name.Contains(model.Name));
+
+            model.TravelsBO = liste.ToList();
             return View(model);
         }
 
