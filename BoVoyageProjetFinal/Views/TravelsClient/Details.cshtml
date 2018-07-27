@@ -1,0 +1,66 @@
+﻿@model BoVoyageProjetFinal.Models.Travel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination.Continent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination.Continent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TravelAgency.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TravelAgency.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartureDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReturnDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailablePlaces)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvailablePlaces)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllInclusivePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllInclusivePrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a class="btn btn-primary" href="#" role="button">Réserver ce voyage</a>
+    <a class="btn btn-primary" href="@Url.Action("Index","TravelsClient")" role="button">Retour aux voyages</a>
+</p>
