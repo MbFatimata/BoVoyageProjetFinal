@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BoVoyageProjetFinal.Models.Travel>
+@{
+    Layout = null;
+}
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination.Continent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Destination.Region)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartureDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllInclusivePrice)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination.Continent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination.Region)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllInclusivePrice)
+            </td>
+        </tr>
+    }
+</table>
