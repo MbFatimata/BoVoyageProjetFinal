@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
 }
 
-<h2>Details </h2>
+<h2>Details</h2>
 
 <div>
     <hr />
@@ -83,24 +84,7 @@
 
     </dl>
 </div>
-@*<div class="row">
-    <div class="col-md-3">
-        @{
-
-            foreach (var fichier in Model.Files)
-            {
-                var fichierBase64 = Convert.ToBase64String(fichier.Content);
-                var imgSrc = String.Format("data:image/png;base64,{0}", fichierBase64);
-                var id = fichier.ID;
-                <img class="img-thumbnail" title="@fichier.Name" src="@imgSrc" />
-                <p>@fichier.Name <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a></p>
-
-            }
-
-        }
-    </div>
-</div>
-    A tester lorsque des image auront été enregistré par le backOffiec*@
 <p>
-    @Html.ActionLink("Retour", "Index")
+    <a class="btn btn-primary" href="@Url.Action("Create","ReservationDossiers")" role="button">Réserver ce voyage</a>
+    <a class="btn btn-primary" href="@Url.Action("Index","TravelsClient")" role="button">Retour aux voyages</a>
 </p>

@@ -2,9 +2,11 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
 }
 
-<h2>Voyages</h2>
+<h2>Voyages disponibles</h2>
+
 
 <table class="table">
     <tr>
@@ -26,6 +28,15 @@
         <th>
             @Html.DisplayNameFor(model => model.AllInclusivePrice)
         </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </th>*@
         <th></th>
     </tr>
 
@@ -50,9 +61,17 @@
             @Html.DisplayFor(modelItem => item.AllInclusivePrice)
         </td>
         <td>
-            @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
-            <a href="@Url.Action("Details", new { id=item.ID })"><i class="fa fa-search text-warning"></i></a>
-
+            @*@Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeletedAt)
+        </td>*@
+        <td>
+            <a href="@Url.Action("Details",new { id=item.ID })"><i class="fa fa-search text-info"> Details </i></a>
+            
         </td>
     </tr>
 }
