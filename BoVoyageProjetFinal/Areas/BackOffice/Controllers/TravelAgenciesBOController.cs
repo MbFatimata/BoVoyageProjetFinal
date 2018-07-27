@@ -128,7 +128,6 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             travelAgency.DeletedAt = DateTime.Now;
             db.Entry(travelAgency).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            TempData["Message"] = "Cette agence a été correctement supprimée !!!";
             DisplayMessage("Cette agence a été correctement supprimée !!!", MessageType.SUCCESS);
             return RedirectToAction("Index");
         }
