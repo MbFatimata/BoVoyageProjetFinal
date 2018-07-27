@@ -86,13 +86,23 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Mail,Password,ConfirmedPassword,LastName,FirstName,Address,Telephone,Birthdate,CivilityID")] Salesman salesman)
+        public ActionResult Edit([Bind(Include = "ID,Mail,LastName,FirstName,Address,Telephone,Birthdate,CivilityID")] Salesman salesman)
         {
+            ModelState.Remove("Password");
+            ModelState.Remove("ConfirmedPassword");
+            var oldRow = db.Salesmen.Where(x => x.ID == salesman.ID).SingleOrDefault();
+            db.Entry(oldRow).State = EntityState.Detached;
             if (ModelState.IsValid)
             {
                 db.Entry(salesman).State = EntityState.Modified;
+                db.Configuration.ValidateOnSaveEnabled = false;
+                salesman.Password = oldRow.Password.HashMD5();
+                salesman.ConfirmedPassword = salesman.Password;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                DisplayMessage("Votre profil a été correctement modifié !!!", MessageType.SUCCESS);
+
+                return RedirectToAction("Index", "DashBoard");
             }
             ViewBag.CivilityID = new SelectList(db.Civilities, "ID", "Label", salesman.CivilityID);
             return View(salesman);

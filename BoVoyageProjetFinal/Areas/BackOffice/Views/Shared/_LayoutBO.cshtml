@@ -78,10 +78,15 @@
                         </div>
                     </li>
                 </ul>
+                @if (user != null)
+                {
                 <span class="navbar-text">
-                    @*
-            Bonjour @user.LastName @user.FirstName<a href="@Url.Action("Logout", "Authentication")" class="col-2 btn-outline-warning"><i class="fa fa-user"> Se déconnecter</i></a>
-        *@</span>
+                    Bonjour @user.LastName @user.FirstName
+                    <a href="@Url.Action("Edit", "SalesmenBO", new { id=user.ID})" class="col-2 btn-outline-warning">Profil</a>
+                    <a href="@Url.Action("Logout", "Authentication")" class="col-2 btn-outline-warning"><i class="fa fa-user"> Se déconnecter</i></a>
+                </span>
+                }
+
             </div>
         </nav>
 
