@@ -126,14 +126,11 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         {
             Travel travel = db.Travels.Find(id);
 
-            // Supprimer le contenu des imagesfiles mais les conserve en base
+            // Supprimer les imagesfiles en base car le cascade est false
             var travelFiles = db.TravelFiles.Where(x => x.TravelID == id).ToList();
             foreach (var travelFile in travelFiles)
             {
-                travelFile.Content = new byte[0];
-                travelFile.Deleted = true;
-                travelFile.DeletedAt = DateTime.Now;
-                db.Entry(travelFile).State = System.Data.Entity.EntityState.Modified;
+                db.TravelFiles.Remove(travelFile);
             }
 
             travel.Deleted = true;

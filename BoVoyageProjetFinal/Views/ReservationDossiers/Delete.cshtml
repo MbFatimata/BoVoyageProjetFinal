@@ -1,0 +1,105 @@
+﻿@model BoVoyageProjetFinal.Models.ReservationDossier
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ReservationDossier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Travel.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Travel.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Insurance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Insurance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreditCardNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditCardNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReservationDossierStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReservationDossierStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReasonCancellationDossier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReasonCancellationDossier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedAt)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

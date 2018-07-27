@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using BoVoyageProjetFinal.Controllers;
 using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
+using BoVoyageProjetFinal.Utils;
 
 namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
 {
@@ -17,7 +18,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // GET: BackOffice/SalesmenBO
         public ActionResult Index()
         {
-            var salesmen = db.Salesmen.Include(s => s.Civility);
+            var salesmen = db.Salesmen.Where(x => !x.Deleted).Include(s => s.Civility);
             return View(salesmen.ToList());
         }
 
@@ -48,10 +49,13 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Mail,Password,LastName,FirstName,Address,Telephone,Birthdate,CivilityID,CreatedAt,Deleted,DeletedAt")] Salesman salesman)
+        public ActionResult Create([Bind(Include = "ID,Mail,Password,ConfirmedPassword,LastName,FirstName,Address,Telephone,Birthdate,CivilityID")] Salesman salesman)
         {
+
             if (ModelState.IsValid)
             {
+                db.Configuration.ValidateOnSaveEnabled = false;
+                salesman.Password = salesman.Password.HashMD5();
                 db.Salesmen.Add(salesman);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +86,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Mail,Password,LastName,FirstName,Address,Telephone,Birthdate,CivilityID,CreatedAt,Deleted,DeletedAt")] Salesman salesman)
+        public ActionResult Edit([Bind(Include = "ID,Mail,Password,ConfirmedPassword,LastName,FirstName,Address,Telephone,Birthdate,CivilityID")] Salesman salesman)
         {
             if (ModelState.IsValid)
             {

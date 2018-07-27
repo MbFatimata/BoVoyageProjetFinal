@@ -11,18 +11,18 @@ using BoVoyageProjetFinal.Models;
 
 namespace BoVoyageProjetFinal.Controllers
 {
-    public class TravelsController : Controller
+    public class TravelsClientController : Controller
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 
-        // GET: Travels
+        // GET: TravelsClient
         public ActionResult Index()
         {
             var travels = db.Travels.Include(t => t.Destination).Include(t => t.TravelAgency);
             return View(travels.ToList());
         }
 
-        // GET: Travels/Details/5
+        // GET: TravelsClient/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -31,15 +31,12 @@ namespace BoVoyageProjetFinal.Controllers
             }
             //Travel travel = db.Travels.Find(id);
             Travel travel = db.Travels.Include(x => x.Destination).Include(t => t.TravelAgency).SingleOrDefault(x => x.ID == id);
-
             if (travel == null)
             {
                 return HttpNotFound();
             }
             return View(travel);
         }
-        
-        //Faire methode search après initialisation de données
 
         protected override void Dispose(bool disposing)
         {
