@@ -209,6 +209,7 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReservationDossiersController.cs" />
     <Compile Include="Controllers\TravelsClientController.cs" />
     <Compile Include="Controllers\TravelsController.cs" />
     <Compile Include="Data\BoVoyageDbContext.cs" />
@@ -281,6 +282,11 @@
     <Content Include="Views\Clients\Index.cshtml" />
     <Content Include="Views\TravelsClient\Details.cshtml" />
     <Content Include="Views\TravelsClient\Index.cshtml" />
+    <Content Include="Views\ReservationDossiers\Create.cshtml" />
+    <Content Include="Views\ReservationDossiers\Delete.cshtml" />
+    <Content Include="Views\ReservationDossiers\Details.cshtml" />
+    <Content Include="Views\ReservationDossiers\Edit.cshtml" />
+    <Content Include="Views\ReservationDossiers\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

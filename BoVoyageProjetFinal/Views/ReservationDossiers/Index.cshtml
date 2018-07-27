@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BoVoyageProjetFinal.Models.ReservationDossier>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "_LayoutClient";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.Mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Travel.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Insurance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditCardNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReservationDossierStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReasonCancellationDossier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.Mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Travel.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Insurance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditCardNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReservationDossierStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReasonCancellationDossier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeletedAt)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
