@@ -30,7 +30,8 @@ namespace BoVoyageProjetFinal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReservationDossier reservationDossier = db.ReservationDossiers.Find(id);
+            //ReservationDossier reservationDossier = db.ReservationDossiers.Find(id);
+            ReservationDossier reservationDossier = db.ReservationDossiers.Include(x => x.Participants).Include(x => x.Client).SingleOrDefault(x => x.ID == id);
             if (reservationDossier == null)
             {
                 return HttpNotFound();
