@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageProjetFinal.Areas.BackOffice.Models;
 using BoVoyageProjetFinal.Controllers;
 using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
@@ -16,10 +17,27 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
     public class TravelsBOController : BaseController
     {
         // GET: BackOffice/TravelsBO
-        public ActionResult Index()
+        public ActionResult Index(TravelBOViewModel model)
         {
-            var travels = db.Travels.Where(t => !t.Deleted).Include(t => t.Destination).Include(t => t.TravelAgency);
-            return View(travels.ToList());
+            IEnumerable<Travel> liste = db.Travels.Include("Destination").Include("TravelAgency");
+
+            if (model.DepartureDateMax != null)
+                liste = liste.Where(x => x.DepartureDate <= model.DepartureDateMax);
+
+            if (model.DepartureDateMin != null)
+                liste = liste.Where(x => x.DepartureDate >= model.DepartureDateMin);
+
+            if (model.ReturnDateMax != null)
+                liste = liste.Where(x => x.ReturnDate <= model.ReturnDateMax);
+
+            if (model.ReturnDateMin != null)
+                liste = liste.Where(x => x.ReturnDate >= model.ReturnDateMin);
+
+
+            if (model.AllInclusivePriceMax != null)
+                liste = liste.Where(x => x.AllInclusivePrice >= model.AllInclusivePriceMax);
+
+            return View(model);
         }
 
         // GET: BackOffice/TravelsBO/Details/5
