@@ -262,7 +262,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Clients\Create.cshtml" />
     <Content Include="Views\ContactMessages\Create.cshtml" />
-    <Content Include="Views\ContactMessages\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -299,7 +298,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807251353362_Init.resx">
