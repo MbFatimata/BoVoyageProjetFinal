@@ -119,8 +119,14 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Salesman salesman = db.Salesmen.Find(id);
-            db.Salesmen.Remove(salesman);
+
+            salesman.Deleted = true;
+            salesman.DeletedAt = DateTime.Now;
+            db.Entry(salesman).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
+
+            DisplayMessage("Le compte de l'agent a été correctement supprimé !!!", MessageType.SUCCESS);
+
             return RedirectToAction("Index");
         }
     }
