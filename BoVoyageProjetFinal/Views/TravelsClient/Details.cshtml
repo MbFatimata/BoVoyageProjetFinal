@@ -19,6 +19,30 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Destination.Region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination.Region)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destination.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destination.Description)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.TravelAgency.Name)
         </dt>
 
@@ -61,6 +85,6 @@
     </dl>
 </div>
 <p>
-    <a class="btn btn-primary" href="#" role="button">Réserver ce voyage</a>
+    <a class="btn btn-primary" href="@Url.Action("Create","ReservationDossiers")" role="button">Réserver ce voyage</a>
     <a class="btn btn-primary" href="@Url.Action("Index","TravelsClient")" role="button">Retour aux voyages</a>
 </p>

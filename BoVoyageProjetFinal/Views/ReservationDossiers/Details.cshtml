@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "_LayoutClient";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
 }
 
 <h2>Details</h2>
@@ -59,7 +59,7 @@
             @Html.DisplayFor(model => model.ReservationDossierStatus)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.ReasonCancellationDossier)
         </dt>
 
@@ -89,11 +89,12 @@
 
         <dd>
             @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+<p>  
+    <a href="@Url.Action("Edit",new { id=Model.ID })"><i class="fa fa-edit text-info"> Modifier</i></a>
+    <br/>
+    <a class="btn btn-primary" href="@Url.Action("Index","ReservationDossiers")" role="button">Retour aux réservations</a>
 </p>

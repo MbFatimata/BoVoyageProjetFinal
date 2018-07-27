@@ -7,9 +7,7 @@
 
 <h2>Voyages disponibles</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -72,7 +70,8 @@
             @Html.DisplayFor(modelItem => item.DeletedAt)
         </td>*@
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            <a href="@Url.Action("Details",new { id=item.ID })"><i class="fa fa-search text-info"> Details </i></a>
+            
         </td>
     </tr>
 }

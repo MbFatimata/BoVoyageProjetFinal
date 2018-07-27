@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "_LayoutClient";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
 }
 
 <h2>Index</h2>
@@ -30,18 +30,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ReservationDossierStatus)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.ReasonCancellationDossier)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Deleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -65,22 +56,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.ReservationDossierStatus)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.ReasonCancellationDossier)
-        </td>
+        </td>*@
+
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedAt)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            <a href="@Url.Action("Edit",new { id=item.ID })"><i class="fa fa-edit text-info"> Modifier</i></a>
+            <a href="@Url.Action("Details",new { id=item.ID })"><i class="fa fa-search text-info"> Details </i></a>
         </td>
     </tr>
 }

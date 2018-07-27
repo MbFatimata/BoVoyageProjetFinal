@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutClient.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Modifier mon profil</h2>
 
 @using (Html.BeginForm())
 {
@@ -117,12 +117,13 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Enregistrer les modifications" class="btn btn-default" />
         </div>
     </div>
 </div>
 }
 
 <div>
+    <a class="btn btn-primary" href="@Url.Action("Index")" role="button">Retour aux réservations</a>
     @Html.ActionLink("Back to List", "Index")
 </div>

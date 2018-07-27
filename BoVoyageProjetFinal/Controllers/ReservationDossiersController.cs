@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
+using BoVoyageProjetFinal.Utils;
 
 namespace BoVoyageProjetFinal.Controllers
 {
@@ -50,10 +51,13 @@ namespace BoVoyageProjetFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Insurance,CreditCardNumber,TotalPrice,TravelID,ClientID,ReservationDossierStatus,ReasonCancellationDossier,CreatedAt,Deleted,DeletedAt")] ReservationDossier reservationDossier)
+        public ActionResult Create([Bind(Include = "ID,Insurance,CreditCardNumber,TotalPrice,TravelID,ClientID,ReservationDossierStatus")] ReservationDossier reservationDossier)
         {
             if (ModelState.IsValid)
             {
+
+                db.Configuration.ValidateOnSaveEnabled = false;
+                reservationDossier.CreditCardNumber = reservationDossier.CreditCardNumber.HashMD5();
                 db.ReservationDossiers.Add(reservationDossier);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -64,9 +68,14 @@ namespace BoVoyageProjetFinal.Controllers
             return View(reservationDossier);
         }
 
-        // GET: ReservationDossiers/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: ReservationDossiers/Edit/
+        public ActionResult Edit()
         {
+            int? id = null;
+            if (Session["Travel"] != null)
+            {
+                id = ((Travel)Session["TRAVEL"]).ID;
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

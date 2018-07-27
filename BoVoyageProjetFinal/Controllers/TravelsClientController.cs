@@ -29,7 +29,8 @@ namespace BoVoyageProjetFinal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.Travels.Find(id);
+            //Travel travel = db.Travels.Find(id);
+            Travel travel = db.Travels.Include(x => x.Destination).Include(t => t.TravelAgency).SingleOrDefault(x => x.ID == id);
             if (travel == null)
             {
                 return HttpNotFound();
