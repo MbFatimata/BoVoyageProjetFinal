@@ -18,7 +18,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // GET: BackOffice/TravelsBO
         public ActionResult Index()
         {
-            var travels = db.Travels.Include(t => t.Destination).Include(t => t.TravelAgency);
+            var travels = db.Travels.Where(t => !t.Deleted).Include(t => t.Destination).Include(t => t.TravelAgency);
             return View(travels.ToList());
         }
 
@@ -50,7 +50,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,DepartureDate,ReturnDate,AvailablePlaces,AllInclusivePrice,TravelAgencyID,DestinationID,CreatedAt,Deleted,DeletedAt")] Travel travel)
+        public ActionResult Create([Bind(Include = "ID,DepartureDate,ReturnDate,AvailablePlaces,AllInclusivePrice,TravelAgencyID,DestinationID")] Travel travel)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,DepartureDate,ReturnDate,AvailablePlaces,AllInclusivePrice,TravelAgencyID,DestinationID,CreatedAt,Deleted,DeletedAt")] Travel travel)
+        public ActionResult Edit([Bind(Include = "ID,DepartureDate,ReturnDate,AvailablePlaces,AllInclusivePrice,TravelAgencyID,DestinationID")] Travel travel)
         {
             if (ModelState.IsValid)
             {
@@ -125,12 +125,26 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Travel travel = db.Travels.Find(id);
-            db.Travels.Remove(travel);
+
+            // Supprimer le contenu des imagesfiles mais les conserve en base
+            var travelFiles = db.TravelFiles.Where(x => x.TravelID == id).ToList();
+            foreach (var travelFile in travelFiles)
+            {
+                travelFile.Content = new byte[0];
+                travelFile.Deleted = true;
+                travelFile.DeletedAt = DateTime.Now;
+                db.Entry(travelFile).State = System.Data.Entity.EntityState.Modified;
+            }
+
+            travel.Deleted = true;
+            travel.DeletedAt = DateTime.Now;
+            db.Entry(travel).State = System.Data.Entity.EntityState.Modified;
+
+            DisplayMessage("Ce voyage a été correctement supprimée !!!", MessageType.SUCCESS);
+            //db.Travels.Remove(travel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
 
 
         [HttpPost]
@@ -138,7 +152,6 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         {
             if (upload.ContentLength > 0)
             {
-
                 var model = new TravelFile();
 
                 model.TravelID = id;
@@ -165,6 +178,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         [HttpGet]
         public ActionResult DeleteFile(int id)
         {
+            // On ne conserve pas les travelFiles en base si on supprime les images (à la différence d'une suppression d'un travel)
             TravelFile travelFile = db.TravelFiles.Find(id);
             db.TravelFiles.Remove(travelFile);
             db.SaveChanges();
