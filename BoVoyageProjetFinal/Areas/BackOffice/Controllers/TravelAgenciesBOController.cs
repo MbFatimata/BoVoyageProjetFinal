@@ -17,7 +17,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // GET: BackOffice/TravelAgenciesBO
         public ActionResult Index()
         {
-            return View(db.TravelAgencies.ToList());
+            return View(db.TravelAgencies.Where(x => !x.Deleted).ToList());
         }
 
         // GET: BackOffice/TravelAgenciesBO/Details/5
@@ -128,7 +128,6 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             travelAgency.DeletedAt = DateTime.Now;
             db.Entry(travelAgency).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            TempData["Message"] = "Cette agence a été correctement supprimée !!!";
             DisplayMessage("Cette agence a été correctement supprimée !!!", MessageType.SUCCESS);
             return RedirectToAction("Index");
         }

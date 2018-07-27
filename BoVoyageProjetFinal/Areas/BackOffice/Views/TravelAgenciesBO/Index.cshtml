@@ -7,7 +7,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -15,7 +15,7 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model.Where(x => !x.Deleted))
+    @foreach (var item in Model)
     {
         <tr>
             <td>
