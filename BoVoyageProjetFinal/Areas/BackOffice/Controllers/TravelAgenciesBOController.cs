@@ -17,7 +17,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // GET: BackOffice/TravelAgenciesBO
         public ActionResult Index()
         {
-            return View(db.TravelAgencies.ToList());
+            return View(db.TravelAgencies.Where(x => !x.Deleted).ToList());
         }
 
         // GET: BackOffice/TravelAgenciesBO/Details/5
