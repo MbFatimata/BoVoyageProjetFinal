@@ -36,7 +36,10 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Travel travel = db.Travels.Find(id);
+            //            Travel travel = db.Travels.Find(id);
+            // Travel travel = db.Travels.Find(id).Include(t => t.Destination).Include(t => t.TravelAgency);
+            // Room room = db.Rooms.Include(x => x.User).Include(x => x.Category).SingleOrDefault(x => x.ID == id);
+            Travel travel = db.Travels.Include(x => x.Files).Include(t => t.Destination).Include(t => t.TravelAgency).SingleOrDefault(x => x.ID == id);
             if (travel == null)
             {
                 return HttpNotFound();
