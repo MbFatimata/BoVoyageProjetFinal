@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BoVoyageProjetFinal.Models.Travel>
+﻿@model BoVoyageProjetFinal.Areas.BackOffice.Models.TravelBOViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -6,55 +6,169 @@
 
 <h2>Voyages</h2>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TravelSearch">
+    Chercher un voyage
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="TravelSearch" tabindex="-1" role="dialog" aria-labelledby="TravelSearchLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TravelSearchLabel">Recherche de voyages</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm())
+            {
+                <div class="modal-body">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DepartureDateMax, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DepartureDateMax, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DepartureDateMax, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DepartureDateMin, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DepartureDateMin, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DepartureDateMin, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ReturnDateMax, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ReturnDateMax, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReturnDateMax, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AllInclusivePriceMax, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.AllInclusivePriceMax, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AllInclusivePriceMax, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AllInclusivePriceMin, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.AllInclusivePriceMin, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AllInclusivePriceMin, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Continent, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Continent, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Continent, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Region, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Region, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Rechercher" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.TravelsBO != null)
+{
+
 <table class="table table-bordered table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Destination.Continent)
+            Continent
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TravelAgency.Name)
+            Pays
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartureDate)
+            Région
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReturnDate)
+            Nom
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AvailablePlaces)
+            Date de départ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AllInclusivePrice)
+            Date de retour
+        </th>
+        <th>
+            Prix tout compris
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Destination.Continent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TravelAgency.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartureDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReturnDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AvailablePlaces)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AllInclusivePrice)
-        </td>
-        <td>
-            @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
-            <a href="@Url.Action("Details", new { id=item.ID })"><i class="fa fa-search text-warning"></i></a>
-
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.TravelsBO)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination.Continent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination.Region)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TravelAgency.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllInclusivePrice)
+            </td>
+            <td>
+                <a href="@Url.Action("Details", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fa fa-search"></i></a>
+            </td>
+        </tr>
+    }
 
 </table>
+}

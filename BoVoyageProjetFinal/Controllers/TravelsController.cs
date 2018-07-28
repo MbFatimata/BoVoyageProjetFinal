@@ -6,21 +6,53 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageProjetFinal.Areas.BackOffice.Models;
 using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
 
 namespace BoVoyageProjetFinal.Controllers
 {
-    public class TravelsController : Controller
+    public class TravelsController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
-
         // GET: Travels
-        public ActionResult Index()
+        public ActionResult Index(TravelBOViewModel model)
         {
-            var travels = db.Travels.Include(t => t.Destination).Include(t => t.TravelAgency);
-            return View(travels.ToList());
+            IEnumerable<Travel> liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency);
+
+            if (model.DepartureDateMax != null)
+                liste = liste.Where(x => x.DepartureDate <= model.DepartureDateMax);
+
+            if (model.DepartureDateMin != null)
+                liste = liste.Where(x => x.DepartureDate >= model.DepartureDateMin);
+
+            if (model.ReturnDateMax != null)
+                liste = liste.Where(x => x.ReturnDate <= model.ReturnDateMax);
+
+            if (model.ReturnDateMin != null)
+                liste = liste.Where(x => x.ReturnDate >= model.ReturnDateMin);
+
+            if (model.AllInclusivePriceMax != null)
+                liste = liste.Where(x => x.AllInclusivePrice <= model.AllInclusivePriceMax);
+
+            if (model.AllInclusivePriceMin != null)
+                liste = liste.Where(x => x.AllInclusivePrice >= model.AllInclusivePriceMin);
+
+            if (!string.IsNullOrWhiteSpace(model.Continent))
+                liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency).Where(x => x.Destination.Continent.Contains(model.Continent));
+
+            if (!string.IsNullOrWhiteSpace(model.Country))
+                liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency).Where(x => x.Destination.Country.Contains(model.Country));
+
+            if (!string.IsNullOrWhiteSpace(model.Region))
+                liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency).Where(x => x.Destination.Region.Contains(model.Region));
+
+            if (!string.IsNullOrWhiteSpace(model.Name))
+                liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency).Where(x => x.TravelAgency.Name.Contains(model.Name));
+
+            model.TravelsBO = liste.ToList();
+            return View(model);
         }
+
 
         // GET: Travels/Details/5
         public ActionResult Details(int? id)
@@ -37,17 +69,7 @@ namespace BoVoyageProjetFinal.Controllers
                 return HttpNotFound();
             }
             return View(travel);
-        }
-        
-        //Faire methode search après initialisation de données
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
