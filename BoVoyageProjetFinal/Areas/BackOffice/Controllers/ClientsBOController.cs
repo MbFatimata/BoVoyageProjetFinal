@@ -69,7 +69,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Mail,Password,LastName,FirstName,Address,Telephone,Birthdate,CivilityID,CreatedAt,Deleted,DeletedAt")] Client client)
+        public ActionResult Create([Bind(Include = "ID,Mail,Password,LastName,FirstName,Address,Telephone,Birthdate,CivilityID")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -103,7 +103,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Mail,Password,LastName,FirstName,Address,Telephone,Birthdate,CivilityID,CreatedAt,Deleted,DeletedAt")] Client client)
+        public ActionResult Edit([Bind(Include = "ID,Mail,Password,LastName,FirstName,Address,Telephone,Birthdate,CivilityID")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -136,8 +136,14 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Client client = db.Clients.Find(id);
-            db.Clients.Remove(client);
+
+            client.Deleted = true;
+            client.DeletedAt = DateTime.Now;
+            db.Entry(client).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
+
+            DisplayMessage("Le compte client a été correctement supprimée !!!", MessageType.SUCCESS);
+           
             return RedirectToAction("Index");
         }
 

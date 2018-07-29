@@ -20,7 +20,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(db.Destinations.ToList());
         }
 
-        // GET: BackOffice/DestinationsBO/Details/5
+        // GET: BackOffice/DestinationsBO/Details/
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -46,7 +46,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Continent,Country,Region,Description,CreatedAt,Deleted,DeletedAt")] Destination destination)
+        public ActionResult Create([Bind(Include = "ID,Continent,Country,Region,Description")] Destination destination)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(destination);
         }
 
-        // GET: BackOffice/DestinationsBO/Edit/5
+        // GET: BackOffice/DestinationsBO/Edit/
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,12 +73,12 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(destination);
         }
 
-        // POST: BackOffice/DestinationsBO/Edit/5
+        // POST: BackOffice/DestinationsBO/Edit/
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Continent,Country,Region,Description,CreatedAt,Deleted,DeletedAt")] Destination destination)
+        public ActionResult Edit([Bind(Include = "ID,Continent,Country,Region,Description")] Destination destination)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(destination);
         }
 
-        // GET: BackOffice/DestinationsBO/Delete/5
+        // GET: BackOffice/DestinationsBO/Delete/
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,14 +104,20 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(destination);
         }
 
-        // POST: BackOffice/DestinationsBO/Delete/5
+        // POST: BackOffice/DestinationsBO/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Destination destination = db.Destinations.Find(id);
-            db.Destinations.Remove(destination);
+
+            destination.Deleted = true;
+            destination.DeletedAt = DateTime.Now;
+            db.Entry(destination).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
+
+            DisplayMessage("La destination a été correctement supprimée !!!", MessageType.SUCCESS);
+
             return RedirectToAction("Index");
         }
     }
