@@ -248,6 +248,7 @@
     <Compile Include="Models\ContactMessage.cs" />
     <Compile Include="Models\Salesman.cs" />
     <Compile Include="Models\TravelFile.cs" />
+    <Compile Include="Models\TravelViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Participant.cs" />
@@ -300,6 +301,7 @@
     <Content Include="Views\ReservationDossiers\Index.cshtml" />
     <Content Include="Views\Shared\_TopFiveTravelsDepartureDate.cshtml" />
     <Content Include="Views\Shared\_TopFiveTravelsPrice.cshtml" />
+    <Content Include="Views\Shared\_TopFiveTravelsCountry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

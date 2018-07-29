@@ -6,16 +6,15 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BoVoyageProjetFinal.Areas.BackOffice.Models;
-using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
+using BoVoyageProjetFinal.Data;
 
 namespace BoVoyageProjetFinal.Controllers
 {
     public class TravelsController : BaseController
     {
         // GET: Travels
-        public ActionResult Index(TravelBOViewModel model)
+        public ActionResult Index(TravelViewModel model)
         {
             IEnumerable<Travel> liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency);
 
@@ -46,10 +45,7 @@ namespace BoVoyageProjetFinal.Controllers
             if (!string.IsNullOrWhiteSpace(model.Region))
                 liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency).Where(x => x.Destination.Region.Contains(model.Region));
 
-            if (!string.IsNullOrWhiteSpace(model.Name))
-                liste = db.Travels.Include(x => x.Destination).Include(x => x.TravelAgency).Where(x => x.TravelAgency.Name.Contains(model.Name));
-
-            model.TravelsBO = liste.ToList();
+            model.Travels = liste.ToList();
             return View(model);
         }
 

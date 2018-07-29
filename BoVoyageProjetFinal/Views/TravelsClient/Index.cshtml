@@ -70,8 +70,7 @@
             @Html.DisplayFor(modelItem => item.DeletedAt)
         </td>*@
         <td>
-            <a href="@Url.Action("Details",new { id=item.ID })"><i class="fa fa-search text-info"> Details </i></a>
-            
+            <a href="@Url.Action("Details", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Details"><i class="fa fa-search"></i></a>
         </td>
     </tr>
 }

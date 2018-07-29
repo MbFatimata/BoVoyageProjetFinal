@@ -1,4 +1,4 @@
-﻿@model BoVoyageProjetFinal.Areas.BackOffice.Models.TravelBOViewModel
+﻿@model BoVoyageProjetFinal.Models.TravelViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -8,7 +8,7 @@
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TravelSearch">
-    Chercher un voyage
+    Rechercher un voyage
 </button>
 
 <!-- Modal -->
@@ -47,6 +47,14 @@
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.ReturnDateMax, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.ReturnDateMax, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ReturnDateMin, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ReturnDateMin, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReturnDateMin, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
@@ -91,14 +99,6 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-6" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Rechercher" class="btn btn-default" />
                         </div>
@@ -111,64 +111,58 @@
     </div>
 </div>
 
-@if (Model.TravelsBO != null)
+@if (Model.Travels != null)
 {
 
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>
-            Continent
-        </th>
-        <th>
-            Pays
-        </th>
-        <th>
-            Région
-        </th>
-        <th>
-            Nom
-        </th>
-        <th>
-            Date de départ
-        </th>
-        <th>
-            Date de retour
-        </th>
-        <th>
-            Prix tout compris
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.TravelsBO)
-    {
+    <table class="table table-bordered table-striped">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination.Continent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TravelAgency.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartureDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReturnDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AllInclusivePrice)
-            </td>
-            <td>
-                <a href="@Url.Action("Details", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fa fa-search"></i></a>
-            </td>
+            <th>
+                Continent
+            </th>
+            <th>
+                Pays
+            </th>
+            <th>
+                Région
+            </th>
+            <th>
+                Date de départ
+            </th>
+            <th>
+                Date de retour
+            </th>
+            <th>
+                Prix tout compris
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model.Travels)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination.Continent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination.Region)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReturnDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AllInclusivePrice)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Details"><i class="fa fa-search"></i></a>
+                </td>
+            </tr>
+        }
+
+    </table>
 }

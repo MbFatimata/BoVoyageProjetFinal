@@ -12,7 +12,7 @@
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TravelSearch">
-    Chercher un voyage
+    Rechercher un voyage
 </button>
 
 <!-- Modal -->
@@ -51,6 +51,14 @@
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.ReturnDateMax, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ReturnDateMax, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReturnDateMin, htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ReturnDateMin, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReturnDateMin, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -175,7 +183,7 @@
                 </td>
                 <td>
                     <a href="@Url.Action("Edit", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Editer"><i class="fa fa-edit text-warning"></i></a>
-                    <a href="@Url.Action("Details", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fa fa-search"></i></a>
+                    <a href="@Url.Action("Details", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Details"><i class="fa fa-search"></i></a>
                     <a href="@Url.Action("Delete", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Supprimer"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>

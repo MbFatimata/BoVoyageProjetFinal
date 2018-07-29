@@ -60,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
-            <a href="@Url.Action( "Edit", new { id=item.ID})"><i class="fa fa-edit text-warning"></i></a>
-            <a href="@Url.Action( "Details", new { id=item.ID})"><i class="fa fa-search"></i></a>
-            <a href="@Url.Action( "Delete", new { id=item.ID})"><i class="fa fa-trash"></i></a>
+            <a href="@Url.Action("Edit", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Editer"><i class="fa fa-edit text-warning"></i></a>
+            <a href="@Url.Action("Details", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Details"><i class="fa fa-search"></i></a>
+            <a href="@Url.Action("Delete", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Supprimer"><i class="fa fa-trash"></i></a>
         </td>
     </tr>
     }
