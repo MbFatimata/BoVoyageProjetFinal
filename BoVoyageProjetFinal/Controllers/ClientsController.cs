@@ -12,7 +12,7 @@ using BoVoyageProjetFinal.Utils;
 
 namespace BoVoyageProjetFinal.Controllers
 {
-    public class ClientsController : Controller
+    public class ClientsController : BaseController
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 
@@ -137,6 +137,46 @@ namespace BoVoyageProjetFinal.Controllers
             return RedirectToAction("Index");
         }
 
+        /*
+        // GET: BackOffice/SalesmenBO/ChangePassword/
+        public ActionResult ChangePassword(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Salesman salesman = db.Salesmen.Find(id);
+            if (salesman == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        // POST: BackOffice/SalesmenBO/ChangePassword/
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(SalesmanPasswordBOViewModel SalesmanPasswordBOViewModel)
+        {
+            Salesman salesman = Session["USER_BO"] as Salesman;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(salesman).State = EntityState.Modified;
+                db.Configuration.ValidateOnSaveEnabled = false;
+                salesman.Password = SalesmanPasswordBOViewModel.Password.HashMD5();
+                db.SaveChanges();
+
+                DisplayMessage("Votre mot de passe a été correctement modifié !!!", MessageType.SUCCESS);
+
+                return RedirectToAction("Index", "DashBoard");
+            }
+            DisplayMessage("Il y a malheureusement eu un souci :-(", MessageType.ERROR);
+            return RedirectToAction("Index", "DashBoard");
+        }
+        */
 
         protected override void Dispose(bool disposing)
         {

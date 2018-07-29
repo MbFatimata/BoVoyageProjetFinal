@@ -55,7 +55,12 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View(model);
         }
 
-        // GET: BackOffice/TravelsBO/Details/5
+        // GET: BackOffice/TravelsBO/Details/
+        /// <summary>
+        /// Retourne la vue du détail voyage correspondant à l'Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Vue "détail d'un voyage"</returns>
         public ActionResult Details(int? id)
         {
             if (id == null)

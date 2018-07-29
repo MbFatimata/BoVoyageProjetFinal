@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BoVoyageProjetFinal.Controllers
 {
-    public class SharedController : Controller
+    public class SharedController : BaseController
     {
         protected BoVoyageDbContext db = new BoVoyageDbContext();
 

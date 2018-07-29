@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace BoVoyageProjetFinal.Controllers
 {
-    public class AuthenticationClientController : Controller
+    public class AuthenticationClientController : BaseController
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
         // GET: /AuthenticationClient/Login
