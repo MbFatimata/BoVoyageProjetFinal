@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Home", new { area="" })">App <span class="sr-only">Current</span></a>
+                        <a class="nav-link" href="@Url.Action("Index", "Home", new { area="" })"><i class="fa fa-home"></i><span class="sr-only">Current</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="@Url.Action("Index", "Dashboard")">BackOffice</a>
@@ -87,25 +87,31 @@
                         </div>
                     </li>
                 </ul>
-                @if (user != null)
-                {
-                <span class="navbar-text">
-                    Bonjour @user.LastName @user.FirstName
-                    <a href="@Url.Action("Edit", "SalesmenBO", new { id=user.ID})" class="col-2 btn-outline-warning">Profil</a>
-                    <a href="@Url.Action("Logout", "AuthenticationSalesman")" class="col-2 btn-outline-warning"><i class="fa fa-user"> Se déconnecter</i></a>
-                </span>
-                }
-
             </div>
         </nav>
 
-        @Html.Partial("_DisplayMessage")
+        @if (user != null)
+        {
+        <div class="bg-info text-right" style="margin-bottom: 2px;">
+            <span class="text-white">
+                Bonjour <b class="text-white">@user.FirstName @user.LastName</b> !
+            </span>
+            <span class="text-white">
+                <a href="@Url.Action("Edit", "SalesmenBO", new { id=user.ID})" class="col-2 btn-outline-warning text-white">mon profil</a>
+            </span>
+            <span class="text-white">
+                <a href="@Url.Action("Logout", "AuthenticationSalesman")" class="col-2 btn-outline-warning text-white"><i class="fa fa-sign-out"></i>Se déconnecter</a>
+            </span>
+        </div>
+        }
 
-        @RenderBody()
-        <footer class="bg-info">
-            &copy; 2018 BoVoyage - BACKOFFICE
-        </footer>
-    </div>
+            @Html.Partial("_DisplayMessage")
+
+            @RenderBody()
+            <footer class="bg-info">
+                &copy; 2018 BoVoyage - BACKOFFICE
+            </footer>
+        </div>
 
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
