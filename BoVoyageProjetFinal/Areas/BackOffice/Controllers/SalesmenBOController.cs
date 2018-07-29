@@ -96,9 +96,10 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             {
                 db.Entry(salesman).State = EntityState.Modified;
                 db.Configuration.ValidateOnSaveEnabled = false;
-                salesman.Password = oldRow.Password.HashMD5();
-                salesman.ConfirmedPassword = salesman.Password;
+                salesman.Password = oldRow.Password;
                 db.SaveChanges();
+
+                Session["USER_BO"] = salesman;
 
                 DisplayMessage("Votre profil a été correctement modifié !!!", MessageType.SUCCESS);
 
