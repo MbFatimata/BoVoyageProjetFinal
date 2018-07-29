@@ -247,6 +247,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthenticationClientLoginViewModel.cs" />
     <Compile Include="Models\Civility.cs" />
+    <Compile Include="Models\ClientPasswordViewModel.cs" />
     <Compile Include="Models\ContactMessage.cs" />
     <Compile Include="Models\Salesman.cs" />
     <Compile Include="Models\TravelFile.cs" />

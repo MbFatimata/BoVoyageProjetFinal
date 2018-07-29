@@ -11,7 +11,7 @@ using BoVoyageProjetFinal.Models;
 
 namespace BoVoyageProjetFinal.Controllers
 {
-    public class ContactMessagesController : Controller
+    public class ContactMessagesController : BaseController
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 

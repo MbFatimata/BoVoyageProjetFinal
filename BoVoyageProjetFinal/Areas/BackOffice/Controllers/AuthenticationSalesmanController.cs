@@ -7,10 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using BoVoyageProjetFinal.Utils;
 using BoVoyageProjetFinal.filters;
+using BoVoyageProjetFinal.Controllers;
 
 namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
 {
-    public class AuthenticationSalesmanController : Controller
+    public class AuthenticationSalesmanController : BaseController
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 

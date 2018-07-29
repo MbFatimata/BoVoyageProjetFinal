@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace BoVoyageProjetFinal.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         // GET: Home
         public ActionResult Index()

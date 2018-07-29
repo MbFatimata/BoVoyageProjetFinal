@@ -12,7 +12,7 @@ using BoVoyageProjetFinal.Utils;
 
 namespace BoVoyageProjetFinal.Controllers
 {
-    public class ReservationDossiersController : Controller
+    public class ReservationDossiersController : BaseController
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 

@@ -142,7 +142,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: BackOffice/SalesmenBO/Edit/5
+        // GET: BackOffice/SalesmenBO/ChangePassword/
         public ActionResult ChangePassword(int? id)
         {
             if (id == null)
@@ -157,7 +157,7 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             return View();
         }
 
-        // POST: BackOffice/SalesmenBO/Edit/5
+        // POST: BackOffice/SalesmenBO/ChangePassword/
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
