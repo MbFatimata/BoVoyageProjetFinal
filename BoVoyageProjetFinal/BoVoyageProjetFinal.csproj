@@ -173,6 +173,7 @@
     <Content Include="Areas\BackOffice\Views\ClientsBO\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\ClientsBO\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\ClientsBO\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\SalesmenBO\ChangePassword.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -213,6 +214,7 @@
     <Compile Include="Areas\BackOffice\Controllers\TravelsBOController.cs" />
     <Compile Include="Areas\BackOffice\Models\AuthenticationSalesmanLoginViewModel.cs" />
     <Compile Include="Areas\BackOffice\Models\ClientBOViewModel.cs" />
+    <Compile Include="Areas\BackOffice\Models\SalesmanPasswordBOViewModel.cs" />
     <Compile Include="Areas\BackOffice\Models\TravelBOViewModel.cs" />
     <Compile Include="Controllers\AuthenticationClientController.cs" />
     <Compile Include="Controllers\BaseController.cs" />

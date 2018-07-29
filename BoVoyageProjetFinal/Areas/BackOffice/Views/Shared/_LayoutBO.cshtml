@@ -92,7 +92,7 @@
                 <span class="navbar-text">
                     Bonjour @user.LastName @user.FirstName
                     <a href="@Url.Action("Edit", "SalesmenBO", new { id=user.ID})" class="col-2 btn-outline-warning">Profil</a>
-                    <a href="@Url.Action("Logout", "Authentication")" class="col-2 btn-outline-warning"><i class="fa fa-user"> Se déconnecter</i></a>
+                    <a href="@Url.Action("Logout", "AuthenticationSalesman")" class="col-2 btn-outline-warning"><i class="fa fa-user"> Se déconnecter</i></a>
                 </span>
                 }
 
@@ -103,7 +103,7 @@
 
         @RenderBody()
         <footer class="bg-info">
-            &copy; BACKOFFICE POEC Rouen 2018
+            &copy; 2018 BoVoyage - BACKOFFICE
         </footer>
     </div>
 

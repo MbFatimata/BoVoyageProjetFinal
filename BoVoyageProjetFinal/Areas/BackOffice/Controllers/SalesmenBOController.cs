@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageProjetFinal.Areas.BackOffice.Models;
 using BoVoyageProjetFinal.Controllers;
 using BoVoyageProjetFinal.Data;
 using BoVoyageProjetFinal.Models;
@@ -136,9 +137,57 @@ namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
             db.Entry(salesman).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
-            DisplayMessage("Le compte de l'agent a été correctement supprimé !!!", MessageType.SUCCESS);
+            DisplayMessage($"Le compte de l'agent {salesman.LastName} {salesman.FirstName} a été correctement supprimé !!!", MessageType.SUCCESS);
 
             return RedirectToAction("Index");
+        }
+
+        // GET: BackOffice/SalesmenBO/Edit/5
+        public ActionResult ChangePassword(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Salesman salesman = db.Salesmen.Find(id);
+            if (salesman == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        // POST: BackOffice/SalesmenBO/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(SalesmanPasswordBOViewModel SalesmanPasswordBOViewModel)
+        {
+            Salesman salesman = Session["USER_BO"] as Salesman;        
+ 
+            if (ModelState.IsValid)
+            {
+                db.Entry(salesman).State = EntityState.Modified;
+                db.Configuration.ValidateOnSaveEnabled = false;
+                salesman.Password = SalesmanPasswordBOViewModel.Password.HashMD5();
+                db.SaveChanges();
+                
+                DisplayMessage("Votre mot de passe a été correctement modifié !!!", MessageType.SUCCESS);
+
+                return RedirectToAction("Index", "DashBoard");
+            }
+            DisplayMessage("Il y a malheureusement eu un souci :-(", MessageType.ERROR);
+            return RedirectToAction("Index", "DashBoard");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
