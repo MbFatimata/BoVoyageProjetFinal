@@ -408,6 +408,7 @@
     <Content Include="Views\Shared\_TopFiveTravelsDepartureDate.cshtml" />
     <Content Include="Views\Shared\_TopFiveTravelsPrice.cshtml" />
     <Content Include="Views\Shared\_TopFiveTravelsCountry.cshtml" />
+    <Content Include="Views\Clients\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

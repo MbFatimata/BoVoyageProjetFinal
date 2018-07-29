@@ -95,7 +95,7 @@ namespace BoVoyageProjetFinal.Controllers
         // POST: Clients/Edit/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Mail,Password,ConfirmedPassword,LastName,FirstName,Address,Telephone,Birthdate,CivilityID")] Client client)
+        public ActionResult Edit([Bind(Include = "ID,Mail,LastName,FirstName,Address,Telephone,Birthdate,CivilityID")] Client client)
         {
             ModelState.Remove("Mail");
 
@@ -111,7 +111,7 @@ namespace BoVoyageProjetFinal.Controllers
             return View();
         }
 
-        // GET: Clients/Delete/5
+        // GET: Clients/Delete/
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -126,7 +126,7 @@ namespace BoVoyageProjetFinal.Controllers
             return View(client);
         }
 
-        // POST: Clients/Delete/5
+        // POST: Clients/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -137,16 +137,16 @@ namespace BoVoyageProjetFinal.Controllers
             return RedirectToAction("Index");
         }
 
-        /*
-        // GET: BackOffice/SalesmenBO/ChangePassword/
+
+        // GET: Clients/ChangePassword/
         public ActionResult ChangePassword(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Salesman salesman = db.Salesmen.Find(id);
-            if (salesman == null)
+            Client client = db.Clients.Find(id);
+            if (client == null)
             {
                 return HttpNotFound();
             }
@@ -158,25 +158,25 @@ namespace BoVoyageProjetFinal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangePassword(SalesmanPasswordBOViewModel SalesmanPasswordBOViewModel)
+        public ActionResult ChangePassword(ClientPasswordViewModel clientPasswordViewModel)
         {
-            Salesman salesman = Session["USER_BO"] as Salesman;
+            Client client = Session["CLIENT"] as Client;
 
             if (ModelState.IsValid)
             {
-                db.Entry(salesman).State = EntityState.Modified;
+                db.Entry(client).State = EntityState.Modified;
                 db.Configuration.ValidateOnSaveEnabled = false;
-                salesman.Password = SalesmanPasswordBOViewModel.Password.HashMD5();
+                client.Password = clientPasswordViewModel.Password.HashMD5();
                 db.SaveChanges();
 
                 DisplayMessage("Votre mot de passe a été correctement modifié !!!", MessageType.SUCCESS);
 
-                return RedirectToAction("Index", "DashBoard");
+                return RedirectToAction("Index", "HomeClient");
             }
             DisplayMessage("Il y a malheureusement eu un souci :-(", MessageType.ERROR);
-            return RedirectToAction("Index", "DashBoard");
+            return RedirectToAction("Index", "HomeClient");
         }
-        */
+
 
         protected override void Dispose(bool disposing)
         {
