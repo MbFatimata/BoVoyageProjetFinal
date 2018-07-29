@@ -17,12 +17,12 @@ namespace BoVoyageProjetFinal.Migrations
 
         protected override void Seed(BoVoyageDbContext context)
         {
-            /*
-            context.Civilities.AddOrUpdate(
-                new Models.Civility { Label = "Monsieur" },
-                new Models.Civility { Label = "Madame" },
-                new Models.Civility { Label = "Mademoiselle" });
-                */
+            
+            //context.Civilities.AddOrUpdate(
+            //    new Models.Civility { Label = "Monsieur" },
+            //    new Models.Civility { Label = "Madame" },
+            //    new Models.Civility { Label = "Mademoiselle" });
+                
         }
     }
 }
