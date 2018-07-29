@@ -15,42 +15,43 @@
 
 <body>
     <<div class="container">
-         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-             <a class="navbar-brand" href="~/">Accueil</a>
-             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                 <span class="navbar-toggler-icon"></span>
-             </button>
-             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                 <ul class="navbar-nav mr-auto">
-                     <li class="nav-item">
-                         <a class="nav-link" href=" @Url.Action("About","Home") ">A propos</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href="@Url.Action("Edit","Clients")">Mon profil</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href=" @Url.Action("Index","TravelsClient") ">Voyages</a>
-                     </li>
-                     <li class="nav-item">
-                         <a class="nav-link" href=" @Url.Action("Index","ReservationDossiers") ">Mes réservations</a>
-                     </li>
-                 </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 2px;">
+        <a class="navbar-brand" href="~/">Accueil</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href=" @Url.Action("About","Home") ">A propos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Edit","Clients")">Mon profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=" @Url.Action("Index","TravelsClient") ">Voyages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=" @Url.Action("Index","ReservationDossiers") ">Mes réservations</a>
+                </li>
+            </ul>
 
-                 <span class="navbar-text">
-                     Bonjour @client.FirstName @client.LastName <a href="@Url.Action("Logout", "AuthenticationClient")" class="btn btn-danger btn-sm"><i class="fa fa-sign-out"></i>Se deconnecter</a>
-                 </span>
-             </div>
-         </nav>
-        @RenderBody()
-        <hr />
+            <span class="navbar-text">
+                Bonjour @client.FirstName @client.LastName ! <a href="@Url.Action("Logout", "AuthenticationClient")" class="btn btn-danger btn-sm"><i class="fa fa-sign-out"></i>Se deconnecter</a>
+            </span>
+        </div>
+    </nav>
+    @Html.Partial("_DisplayMessage")
+    @RenderBody()
+    <hr />
 
-        <footer class="bg-info text-white">
-            &copy; 2018  BoVoyage
-            @*@Html.Partial("_TopFive", *@
-            @*@@Html.Action("TopFive", "Shared")*@
-        </footer>
+    <footer class="bg-info text-white">
+        &copy; 2018  BoVoyage
+        @*@Html.Partial("_TopFive", *@
+        @*@@Html.Action("TopFive", "Shared")*@
+    </footer>
 
-    </div>
+</div>
 
     <script src="~/Scripts/jquery-3.0.0.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
