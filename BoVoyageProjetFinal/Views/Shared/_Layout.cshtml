@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var client = Session["CLIENT"] as BoVoyageProjetFinal.Models.Client;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -29,18 +33,30 @@
                     </li>
 
                     @*
-                        <li class="nav-item active">
-                            <a class="nav-link" href="@Url.Action("Index", "Dashboard", new { area = "BackOffice" })">Back Office<span class="sr-only">(current)</span></a>
-                        </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Dashboard", new { area = "BackOffice" })">Back Office<span class="sr-only">(current)</span></a>
+            </li>
                     *@
                 </ul>
-                <span class="navbar-text">
-                    <a href="@Url.Action("Create", "Clients")" class="btn btn-info btn-sm">Créer un compte</a>
-                </span>
-                <span> </span>
-                <span class="navbar-text">
-                    <a href="@Url.Action("Login", "AuthenticationClient")" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i> Se connecter</a>
-                </span>
+
+                @if (client == null)
+                {
+
+                    <span class="navbar-text">
+                        <a href="@Url.Action("Create", "Clients")" class="btn btn-info btn-sm">Créer un compte</a>
+                    </span>
+                    <span> </span>
+                    <span class="navbar-text">
+                        <a href="@Url.Action("Login", "AuthenticationClient")" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i> Se connecter</a>
+                    </span>
+                }
+                else
+                {
+                    <span class="navbar-text">
+                        Bonjour @client.FirstName @client.LastName ! <a href="@Url.Action("Index", "HomeClient")" class="btn btn-info btn-sm">Mon compte</a>
+                    </span>
+                }
+
             </div>
         </nav>
         @RenderBody()
