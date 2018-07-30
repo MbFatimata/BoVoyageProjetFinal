@@ -14,8 +14,6 @@ namespace BoVoyageProjetFinal.Controllers
 {
     public class ClientsController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
-
         // GET: /Clients
         public ActionResult Index()
         {
@@ -175,16 +173,6 @@ namespace BoVoyageProjetFinal.Controllers
             }
             DisplayMessage("Il y a malheureusement eu un souci :-(", MessageType.ERROR);
             return RedirectToAction("Index", "HomeClient");
-        }
-
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -10,8 +10,6 @@ namespace BoVoyageProjetFinal.Controllers
 {
     public class SharedController : BaseController
     {
-        protected BoVoyageDbContext db = new BoVoyageDbContext();
-
         // GET: Shared
         [ChildActionOnly]
         public ActionResult TopFiveTravelsDepartureDate()

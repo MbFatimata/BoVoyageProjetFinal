@@ -13,9 +13,7 @@ namespace BoVoyageProjetFinal.Controllers
 {
     public class ContactMessagesController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
-
-        // GET: ContactMessages/Create
+         // GET: ContactMessages/Create
         public ActionResult Create()
         {
             return View();
@@ -36,15 +34,6 @@ namespace BoVoyageProjetFinal.Controllers
             }
 
             return View(contactMessage);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

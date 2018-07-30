@@ -14,8 +14,6 @@ namespace BoVoyageProjetFinal.Controllers
 {
     public class ReservationDossiersController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
-
         // GET: ReservationDossiers
         public ActionResult Index()
         {
@@ -133,15 +131,6 @@ namespace BoVoyageProjetFinal.Controllers
             db.ReservationDossiers.Remove(reservationDossier);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

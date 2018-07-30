@@ -13,8 +13,6 @@ namespace BoVoyageProjetFinal.Controllers
 {
     public class TravelsClientController : BaseController
     {
-        private BoVoyageDbContext db = new BoVoyageDbContext();
-
         // GET: TravelsClient
         public ActionResult Index()
         {
@@ -36,15 +34,6 @@ namespace BoVoyageProjetFinal.Controllers
                 return HttpNotFound();
             }
             return View(travel);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
