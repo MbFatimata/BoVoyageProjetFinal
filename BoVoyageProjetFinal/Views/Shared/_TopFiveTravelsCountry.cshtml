@@ -4,41 +4,44 @@
 }
 
 <table class="table table-hover">
-    <tbody>
-        @foreach (var item in Model)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th colspan="4">
+                @item.Key
+            </th>
+        </tr>
+
+        <tr class="table-secondary">
+            <th>
+                Date de départ
+            </th>
+            <th>
+                Date de retour
+            </th>
+            <th>
+                Prix tout compris
+            </th>
+            <th></th>
+        </tr>
+
+
+        foreach (var travel in item)
         {
-            <tr class="table-primary">
-                <th colspan="3">
-                    @item.Key
-                </th>
-            </tr>
-
-            <tr>
-                <th>
-                    Date de départ
-                </th>
-                <th>
-                    Date de retour
-                </th>
-                <th>
-                    Prix tout compris
-                </th>
-            </tr>
-
-            foreach (var travel in item)
-            {
-                <tr>
-                    <td>
-                        @travel.DepartureDate
-                    </td>
-                    <td>
-                        @travel.ReturnDate
-                    </td>
-                    <td>
-                        @travel.AllInclusivePrice
-                    </td>
-                </tr>
-            }
+        <tr>
+            <td>
+                @travel.DepartureDate
+            </td>
+            <td>
+                @travel.ReturnDate
+            </td>
+            <td>
+                @travel.AllInclusivePrice
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Travels", new { id = travel.ID })" data-toggle="tooltip" data-placement="top" title="Details"><i class="fa fa-search"></i></a>
+            </td>
+        </tr>
         }
-    </tbody>
+    }
 </table>

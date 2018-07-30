@@ -23,29 +23,33 @@
         <th>
             @Html.DisplayNameFor(model => model.AllInclusivePrice)
         </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination.Continent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartureDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReturnDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AllInclusivePrice)
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination.Continent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Destination.Region)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartureDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllInclusivePrice)
+        </td>
+        <td>
+            <a href="@Url.Action("Details", "Travels", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Details"><i class="fa fa-search"></i></a>
+        </td>
+    </tr>
     }
 </table>
