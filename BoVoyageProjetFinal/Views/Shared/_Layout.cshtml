@@ -29,9 +29,9 @@
                     </li>
 
                     @*
-                    <li class="nav-item active">
-                        <a class="nav-link" href="@Url.Action("Index", "Dashboard", new { area = "BackOffice" })">Back Office<span class="sr-only">(current)</span></a>
-                    </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="@Url.Action("Index", "Dashboard", new { area = "BackOffice" })">Back Office<span class="sr-only">(current)</span></a>
+                        </li>
                     *@
                 </ul>
                 <span class="navbar-text">
@@ -42,7 +42,7 @@
                     <a href="@Url.Action("Login", "AuthenticationClient")" class="btn btn-info btn-sm"><i class="fa fa-sign-in"></i> Se connecter</a>
                 </span>
             </div>
-        </nav>       
+        </nav>
         @RenderBody()
         <hr />
 
@@ -53,10 +53,13 @@
         </footer>
 
     </div>
-    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/holder.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @*<script src="~/Scripts/holder.min.js"></script>*@
+
     @RenderSection("SectionScripts", false)
 </body>
 </html>
