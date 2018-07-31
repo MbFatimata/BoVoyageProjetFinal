@@ -11,7 +11,7 @@ using BoVoyageProjetFinal.Controllers;
 
 namespace BoVoyageProjetFinal.Areas.BackOffice.Controllers
 {
-    public class AuthenticationSalesmanController : BaseController
+    public class AuthenticationSalesmanController : Controller
     {
         private BoVoyageDbContext db = new BoVoyageDbContext();
 

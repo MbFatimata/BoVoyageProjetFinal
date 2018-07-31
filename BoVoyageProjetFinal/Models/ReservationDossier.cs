@@ -14,7 +14,7 @@ namespace BoVoyageProjetFinal.Models
         public bool Insurance { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]
-        [Display(Name = "Numéro carte banquaire")]
+        [Display(Name = "Numéro carte bancaire")]
         public string CreditCardNumber { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est obligatoire")]

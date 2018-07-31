@@ -23,13 +23,18 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-<h2>Accueil</h2>
 
-<h3>Top 5 des voyages les moins couteux</h3>
-@Html.Action("TopFiveAllInclusivePrice", "Shared")
+<div style="margin-top: 50px">
+    <h3>Top 5 des voyages les moins couteux</h3>
+    @Html.Action("TopFiveAllInclusivePrice", "Shared")
+</div>
 
-<h3>Top 5 des voyages dont la date de départ est la plus proche</h3>
-@Html.Action("TopFiveTravelsDepartureDate", "Shared")
+<div style="margin-top: 50px">
+    <h3>Top 5 des voyages dont la date de départ est la plus proche</h3>
+    @Html.Action("TopFiveTravelsDepartureDate", "Shared")
+</div>
 
-<h3>Top 5 des voyages dont les pays sont les plus présents</h3>
-@Html.Action("TopFiveTravelsCountry", "Shared")
+<div style="margin-top: 50px">
+    <h3>Top 5 des voyages dont les pays sont les plus présents</h3>
+    @Html.Action("TopFiveTravelsCountry", "Shared")
+</div>
